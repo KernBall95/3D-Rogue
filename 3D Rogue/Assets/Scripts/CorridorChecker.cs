@@ -5,7 +5,7 @@ public class CorridorChecker : MonoBehaviour {
     public bool hasCorridor = false;    //Is true if a corridor is detected
     public Vector3 spawnPoint;
 
-    private Collider collider;
+    private Collider corridorChecker;
 
     void Awake()
     {
@@ -23,7 +23,7 @@ public class CorridorChecker : MonoBehaviour {
         {
             hasCorridor = false;
         }
-        collider = GetComponent<Collider>();
-        Destroy(collider);
+        corridorChecker = GetComponent<Collider>();
+        Destroy(corridorChecker);
     }
 }
