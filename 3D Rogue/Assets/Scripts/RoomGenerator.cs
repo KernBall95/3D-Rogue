@@ -8,15 +8,16 @@ public class RoomGenerator : MonoBehaviour
     public GameObject[] rooms;                                                      //Array of different rooms that can be spawned
     public GameObject corridor;                                                     //Prefab of the corridor. May become array of multiple corridor types   
     public GameObject doorwayBlocker;                                               //An object that is placed in a doorway if no door is spawned
-    public GameObject endPortal;
+    public GameObject endPortal;                                                    //Portal which when touched by player will generate next level of dungeon
     public int roomCount;                                                           //Amount of attempts to spawn rooms
     public int dungeonLevel = 1;                                                    //The level of the dungeon
     public bool generationFinished;                                                 //Is true when the generation of a dungeon level has finished
-    public GameObject player;
+    public GameObject player;                                                       //The player
+    public List<GameObject> spawnedObjects;                                         //A list of the objects that have been spawned
 
     //Private variables
     private GameObject currentRoom;                                                 //The most recent spawned room
-    private float genX, genY, genZ;                                                 
+    private float genX, genY, genZ;                                                 //Coordinates
     private Vector3 roomSpawnPos;                                                   //Room spawn coordinates
     private int roomNumber;                                                         //Which room type will be spawned
     private int roomDirNumber;                                                      //Random number to decide which direction to generate
@@ -24,7 +25,6 @@ public class RoomGenerator : MonoBehaviour
     private bool northRayHit, EastRayHit, southRayHit, westRayHit;                  //Ray hits
     private Transform northRay, southRay, eastRay, westRay;                         //Checks if a room is already where the generator wants to spawn a room
     private Transform northDoorSpawn, eastDoorSpawn, southDoorSpawn, westDoorSpawn; //Door spawn points
-    public List<GameObject> spawnedObjects;                                           //A list of the objects that have been spawned (may be removed)
     private GameObject playerClone;
     
     void Start()
@@ -37,8 +37,7 @@ public class RoomGenerator : MonoBehaviour
     }
 
     IEnumerator GenerationLoop()
-    {
-        
+    {       
         //Set starting point
         genX = 0;
         genY = 0;
@@ -51,46 +50,29 @@ public class RoomGenerator : MonoBehaviour
         currentRoom = Instantiate(rooms[roomNumber], transform.position, Quaternion.identity);
         spawnedObjects.Add(currentRoom);
         playerClone = Instantiate(player, new Vector3(0, 2, -20), Quaternion.identity);
-        
-
-        //Find the rays
-        northRay = currentRoom.transform.Find("Rays/North Ray");
-        southRay = currentRoom.transform.Find("Rays/South Ray");
-        eastRay = currentRoom.transform.Find("Rays/East Ray");
-        westRay = currentRoom.transform.Find("Rays/West Ray");
-
-        //Find the door spawns
-        northDoorSpawn = currentRoom.transform.Find("Door Spawns/North Door Spawn");
-        eastDoorSpawn = currentRoom.transform.Find("Door Spawns/East Door Spawn");
-        southDoorSpawn = currentRoom.transform.Find("Door Spawns/South Door Spawn");
-        westDoorSpawn = currentRoom.transform.Find("Door Spawns/West Door Spawn");
+        FindRaysAndDoorSpawns();
 
         for (int i = 0; i <= roomCount; i++)
         {
             yield return new WaitForSeconds(.000001f);
             GetDirection();
             roomNumber = Random.Range(0, 5); //Decide which room type will be spawned
-
             
             if (nextSpawnDirection == "North")
             {
-                GenerateNorth();
-                
+                GenerateNorth();               
             }
             else if (nextSpawnDirection == "East")
             {
-                GenerateEast();
-                
+                GenerateEast();               
             }
             else if (nextSpawnDirection == "South")
             {
-                GenerateSouth();
-                
+                GenerateSouth();               
             }
             else if (nextSpawnDirection == "West")
             {
-                GenerateWest();
-                
+                GenerateWest();              
             }
         }
         Instantiate(endPortal, transform.position, Quaternion.identity, currentRoom.transform);
@@ -101,7 +83,6 @@ public class RoomGenerator : MonoBehaviour
     public void GetDirection()
     {
         roomDirNumber = Random.Range(1, 5);
-
 
         switch (roomDirNumber)
         {
@@ -117,9 +98,6 @@ public class RoomGenerator : MonoBehaviour
             case 4:
                 nextSpawnDirection = "West";
                 break;
-            //case 5:
-              //  nextSpawnDirection = "North";
-                //break;
             default:
                 Debug.LogError("roomDirNumber is out of range");
                 break;
@@ -153,19 +131,10 @@ public class RoomGenerator : MonoBehaviour
             GameObject newCorridor = Instantiate(corridor, corridorSpawn, Quaternion.identity);
             spawnedObjects.Add(newCorridor);
 
-
             currentRoom = Instantiate(rooms[roomNumber], transform.position, Quaternion.identity);
             spawnedObjects.Add(currentRoom);
 
-            northRay = currentRoom.transform.Find("Rays/North Ray");
-            southRay = currentRoom.transform.Find("Rays/South Ray");
-            eastRay = currentRoom.transform.Find("Rays/East Ray");
-            westRay = currentRoom.transform.Find("Rays/West Ray");
-
-            northDoorSpawn = currentRoom.transform.Find("Door Spawns/North Door Spawn");
-            eastDoorSpawn = currentRoom.transform.Find("Door Spawns/East Door Spawn");
-            southDoorSpawn = currentRoom.transform.Find("Door Spawns/South Door Spawn");
-            westDoorSpawn = currentRoom.transform.Find("Door Spawns/West Door Spawn");
+            FindRaysAndDoorSpawns();
         }
     }
 
@@ -200,15 +169,7 @@ public class RoomGenerator : MonoBehaviour
             currentRoom = Instantiate(rooms[roomNumber], transform.position, Quaternion.identity);
             spawnedObjects.Add(currentRoom);
 
-            northRay = currentRoom.transform.Find("Rays/North Ray");
-            southRay = currentRoom.transform.Find("Rays/South Ray");
-            eastRay = currentRoom.transform.Find("Rays/East Ray");
-            westRay = currentRoom.transform.Find("Rays/West Ray");
-
-            northDoorSpawn = currentRoom.transform.Find("Door Spawns/North Door Spawn");
-            eastDoorSpawn = currentRoom.transform.Find("Door Spawns/East Door Spawn");
-            southDoorSpawn = currentRoom.transform.Find("Door Spawns/South Door Spawn");
-            westDoorSpawn = currentRoom.transform.Find("Door Spawns/West Door Spawn");
+            FindRaysAndDoorSpawns(); ;
        }
     }
 
@@ -236,7 +197,6 @@ public class RoomGenerator : MonoBehaviour
             roomSpawnPos = new Vector3(genX, genY, genZ);
             transform.position = roomSpawnPos;
 
-
             Vector3 corridorSpawn = new Vector3(southDoorSpawn.transform.position.x, southDoorSpawn.transform.position.y - 2.5f, southDoorSpawn.transform.position.z);
             GameObject newCorridor = Instantiate(corridor, corridorSpawn, Quaternion.Euler(0, 180, 0));
             spawnedObjects.Add(newCorridor);
@@ -244,15 +204,7 @@ public class RoomGenerator : MonoBehaviour
             currentRoom = Instantiate(rooms[roomNumber], transform.position, Quaternion.identity);
             spawnedObjects.Add(currentRoom);
 
-            northRay = currentRoom.transform.Find("Rays/North Ray");
-            southRay = currentRoom.transform.Find("Rays/South Ray");
-            eastRay = currentRoom.transform.Find("Rays/East Ray");
-            westRay = currentRoom.transform.Find("Rays/West Ray");
-
-            northDoorSpawn = currentRoom.transform.Find("Door Spawns/North Door Spawn");
-            eastDoorSpawn = currentRoom.transform.Find("Door Spawns/East Door Spawn");
-            southDoorSpawn = currentRoom.transform.Find("Door Spawns/South Door Spawn");
-            westDoorSpawn = currentRoom.transform.Find("Door Spawns/West Door Spawn");
+            FindRaysAndDoorSpawns();
         }
     }
 
@@ -269,7 +221,6 @@ public class RoomGenerator : MonoBehaviour
             Vector3 corridorSpawn = new Vector3(westDoorSpawn.transform.position.x, westDoorSpawn.transform.position.y - 2.5f, westDoorSpawn.transform.position.z);
             GameObject newCorridor = Instantiate(corridor, corridorSpawn, Quaternion.Euler(0, -90, 0));
             spawnedObjects.Add(newCorridor);
-
         }
         else if (Physics.Raycast(forwardRay, out hit, 60f) && Physics.Raycast(downwardRay, out otherHit, 10f))
         {
@@ -287,25 +238,30 @@ public class RoomGenerator : MonoBehaviour
             currentRoom = Instantiate(rooms[roomNumber], transform.position, Quaternion.identity);
             spawnedObjects.Add(currentRoom);
 
-            northRay = currentRoom.transform.Find("Rays/North Ray");
-            southRay = currentRoom.transform.Find("Rays/South Ray");
-            eastRay = currentRoom.transform.Find("Rays/East Ray");
-            westRay = currentRoom.transform.Find("Rays/West Ray");
-
-            northDoorSpawn = currentRoom.transform.Find("Door Spawns/North Door Spawn");
-            eastDoorSpawn = currentRoom.transform.Find("Door Spawns/East Door Spawn");
-            southDoorSpawn = currentRoom.transform.Find("Door Spawns/South Door Spawn");
-            westDoorSpawn = currentRoom.transform.Find("Door Spawns/West Door Spawn");
+            FindRaysAndDoorSpawns();
         }
     }
 
-    public void DestroyAndRegen()
+    //Find the Rays and Door Spawns to prepare for next iteration of generation
+    void FindRaysAndDoorSpawns()
     {
-        
+        northRay = currentRoom.transform.Find("Rays/North Ray");
+        southRay = currentRoom.transform.Find("Rays/South Ray");
+        eastRay = currentRoom.transform.Find("Rays/East Ray");
+        westRay = currentRoom.transform.Find("Rays/West Ray");
+
+        northDoorSpawn = currentRoom.transform.Find("Door Spawns/North Door Spawn");
+        eastDoorSpawn = currentRoom.transform.Find("Door Spawns/East Door Spawn");
+        southDoorSpawn = currentRoom.transform.Find("Door Spawns/South Door Spawn");
+        westDoorSpawn = currentRoom.transform.Find("Door Spawns/West Door Spawn");
+    }
+
+    //Destroys current dungeon and starts the generation of the next level
+    public void DestroyAndRegen()
+    {        
         for (int i = 0; i < spawnedObjects.Count; i++)
         {
-            Destroy(spawnedObjects[i]);
-            
+            Destroy(spawnedObjects[i]);          
         }
         Destroy(playerClone);
         spawnedObjects.Clear();

@@ -13,45 +13,18 @@ public class Room : MonoBehaviour
     public GameObject[] objectPrefabs;
     public Transform[] objectSpawns;
 
-    //private bool doorsSpawned;
-    //private CorridorChecker corridorChecker;
     private GameObject roomGenObject;
     private int objectSpawnDecider;
     private int objectTypeDecider;
 
     void Start()
     {
-       // doorsSpawned = false;
         roomGenObject = GameObject.Find("Room Generator");
         roomGenerator = roomGenObject.GetComponent<RoomGenerator>();
         IEnumerator coroutine = WaitForGen();
         StartCoroutine(coroutine);
         SpawnObjects();
- 
     }
-
-    //void Update()
-    //{
-        /*if(doorsSpawned == false && roomGenerator.generationFinished == true)
-        {
-            for(int i = 0; i < doorSpawns.Length; i++)
-            {
-                Debug.Log(doorSpawns[i].hasCorridor);
-                if (doorSpawns[i].hasCorridor == true) //Instantiate door if there is a corridor
-                {                  
-                    Instantiate(doorPrefab, doorSpawns[i].spawnPoint, doorSpawns[i].gameObject.transform.rotation, transform);
-                    
-                }
-                else //Instantiate a doorway blocker if there is no corridor
-                {
-                    Instantiate(doorwayBlocker, doorSpawns[i].spawnPoint, doorSpawns[i].gameObject.transform.rotation, transform);
-                    
-                }
-            }
-            doorsSpawned = true;
-        }*/
-    //}
-
 
     //Check if player enters room
     void OnTriggerEnter(Collider other)
@@ -79,8 +52,7 @@ public class Room : MonoBehaviour
             objectTypeDecider = Random.Range(0, objectPrefabs.Length);
             if (objectSpawnDecider == 1)
             {
-                Instantiate(objectPrefabs[objectTypeDecider], objectSpawns[i].position, Quaternion.identity, transform);
-                
+                Instantiate(objectPrefabs[objectTypeDecider], objectSpawns[i].position, Quaternion.identity, transform);               
             }
         }
     }
@@ -89,16 +61,13 @@ public class Room : MonoBehaviour
     { 
         for (int i = 0; i < doorSpawns.Length; i++)
         {
-
             if (doorSpawns[i].hasCorridor == true) //Instantiate door if there is a corridor
             {
                 Instantiate(doorPrefab, doorSpawns[i].spawnPoint, doorSpawns[i].gameObject.transform.rotation, transform);
-
             }
             else //Instantiate a doorway blocker if there is no corridor
             {
                 Instantiate(doorwayBlocker, doorSpawns[i].spawnPoint, doorSpawns[i].gameObject.transform.rotation, transform);
-
             }
         }
     }
