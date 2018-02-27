@@ -216,9 +216,9 @@ GameObject:
   - component: {fileID: 33988013116864148}
   - component: {fileID: 65130362021152130}
   - component: {fileID: 23646689308505228}
-  m_Layer: 10
+  m_Layer: 9
   m_Name: Pillar 1
-  m_TagString: Obstacle
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -234,9 +234,9 @@ GameObject:
   - component: {fileID: 33084285477701242}
   - component: {fileID: 65266630060922436}
   - component: {fileID: 23780867436509606}
-  m_Layer: 10
+  m_Layer: 9
   m_Name: Pillar 2
-  m_TagString: Obstacle
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -406,9 +406,9 @@ GameObject:
   - component: {fileID: 33402352092899688}
   - component: {fileID: 65711309244605524}
   - component: {fileID: 23906437106248282}
-  m_Layer: 10
+  m_Layer: 9
   m_Name: Pillar 4
-  m_TagString: Obstacle
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -469,9 +469,9 @@ GameObject:
   - component: {fileID: 33804825523330398}
   - component: {fileID: 65920749497285848}
   - component: {fileID: 23825490315660264}
-  m_Layer: 10
+  m_Layer: 9
   m_Name: Pillar 3
-  m_TagString: Obstacle
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1525,7 +1525,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 0aaa50d34653eac4bbc7c12fb9b03c72, type: 2}
+  - {fileID: 2100000, guid: f6fce69521180f74aa47bb65945b0b1f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1559,7 +1559,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 0aaa50d34653eac4bbc7c12fb9b03c72, type: 2}
+  - {fileID: 2100000, guid: f6fce69521180f74aa47bb65945b0b1f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1661,7 +1661,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 0aaa50d34653eac4bbc7c12fb9b03c72, type: 2}
+  - {fileID: 2100000, guid: f6fce69521180f74aa47bb65945b0b1f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1729,7 +1729,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 0aaa50d34653eac4bbc7c12fb9b03c72, type: 2}
+  - {fileID: 2100000, guid: f6fce69521180f74aa47bb65945b0b1f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2281,14 +2281,8 @@ MonoBehaviour:
   - {fileID: 114633315246768210}
   - {fileID: 114729547976549654}
   - {fileID: 114787177491182724}
-  newDoor:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
   playerInRoom: 0
   hasEnemies: 0
-  roomGenerator: {fileID: 0}
   objectPrefabs:
   - {fileID: 1989556077764900, guid: b5f32c62c7924e148b5d1023f402c809, type: 2}
   - {fileID: 1255867507407184, guid: d266fb4c51ea3f747ae2f65062ddb421, type: 2}

@@ -56,7 +56,7 @@ GameObject:
   - component: {fileID: 65087907061817240}
   - component: {fileID: 23129985248038230}
   m_Layer: 9
-  m_Name: Exit Potral Wall
+  m_Name: Pit Wall
   m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -206,7 +206,7 @@ GameObject:
   - component: {fileID: 65208110397088454}
   - component: {fileID: 23972472977556154}
   m_Layer: 9
-  m_Name: Exit Potral Wall
+  m_Name: Pit Wall
   m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -304,7 +304,7 @@ GameObject:
   - component: {fileID: 65630064850577122}
   - component: {fileID: 23866178460398362}
   m_Layer: 9
-  m_Name: Exit Potral Wall
+  m_Name: Pit Wall
   m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -700,7 +700,7 @@ GameObject:
   - component: {fileID: 65184971109019948}
   - component: {fileID: 23012087187184472}
   m_Layer: 9
-  m_Name: Exit Potral Wall
+  m_Name: Pit Wall
   m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2671,13 +2671,7 @@ MonoBehaviour:
   - {fileID: 114688062690407096}
   - {fileID: 114738383996283186}
   - {fileID: 114335666850409494}
-  newDoor:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
   playerInRoom: 0
   hasEnemies: 0
-  roomGenerator: {fileID: 0}
   objectPrefabs: []
   objectSpawns: []

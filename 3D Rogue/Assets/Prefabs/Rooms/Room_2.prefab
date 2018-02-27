@@ -524,9 +524,9 @@ GameObject:
   - component: {fileID: 33581836076617206}
   - component: {fileID: 65353733898716918}
   - component: {fileID: 23835160350753956}
-  m_Layer: 10
+  m_Layer: 9
   m_Name: Cross Cube 1
-  m_TagString: Obstacle
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -557,9 +557,9 @@ GameObject:
   - component: {fileID: 33769402333535712}
   - component: {fileID: 65030816747276842}
   - component: {fileID: 23940221170146940}
-  m_Layer: 10
+  m_Layer: 9
   m_Name: Cross Cube 2
-  m_TagString: Obstacle
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1515,7 +1515,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 0aaa50d34653eac4bbc7c12fb9b03c72, type: 2}
+  - {fileID: 2100000, guid: f6fce69521180f74aa47bb65945b0b1f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1549,7 +1549,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 0aaa50d34653eac4bbc7c12fb9b03c72, type: 2}
+  - {fileID: 2100000, guid: f6fce69521180f74aa47bb65945b0b1f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2008,14 +2008,8 @@ MonoBehaviour:
   - {fileID: 114334871502776076}
   - {fileID: 114277696139404628}
   - {fileID: 114083967600742114}
-  newDoor:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
   playerInRoom: 0
   hasEnemies: 0
-  roomGenerator: {fileID: 0}
   objectPrefabs:
   - {fileID: 1989556077764900, guid: b5f32c62c7924e148b5d1023f402c809, type: 2}
   - {fileID: 1255867507407184, guid: d266fb4c51ea3f747ae2f65062ddb421, type: 2}

@@ -7,9 +7,11 @@ public class RoomGenerator : MonoBehaviour
     //Public variables
     public GameObject[] rooms;                                                      //Array of different rooms that can be spawned
     public GameObject corridor;                                                     //Prefab of the corridor. May become array of multiple corridor types   
-    public GameObject doorwayBlocker;                                               //An object that is placed in a doorway if no door is spawned
     public GameObject endPortal;                                                    //Portal which when touched by player will generate next level of dungeon
+
+    [Range(4, 99)]
     public int roomCount;                                                           //Amount of attempts to spawn rooms
+
     public int dungeonLevel = 1;                                                    //The level of the dungeon
     public bool generationFinished;                                                 //Is true when the generation of a dungeon level has finished
     public GameObject player;                                                       //The player

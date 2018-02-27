@@ -40,9 +40,9 @@ GameObject:
   - component: {fileID: 33552900184705562}
   - component: {fileID: 65049409526793664}
   - component: {fileID: 23523803532031224}
-  m_Layer: 10
+  m_Layer: 9
   m_Name: Wall Piece
-  m_TagString: Obstacle
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -154,9 +154,9 @@ GameObject:
   - component: {fileID: 33184628115829872}
   - component: {fileID: 65752862252029302}
   - component: {fileID: 23121220694224148}
-  m_Layer: 10
+  m_Layer: 9
   m_Name: Wall Piece
-  m_TagString: Obstacle
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -258,9 +258,9 @@ GameObject:
   - component: {fileID: 33588199300179362}
   - component: {fileID: 65949768045012516}
   - component: {fileID: 23130558002913194}
-  m_Layer: 10
+  m_Layer: 9
   m_Name: Wall Piece
-  m_TagString: Obstacle
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -291,9 +291,9 @@ GameObject:
   - component: {fileID: 33109857228714010}
   - component: {fileID: 65123474855297226}
   - component: {fileID: 23922742570383142}
-  m_Layer: 10
+  m_Layer: 9
   m_Name: Wall Piece
-  m_TagString: Obstacle
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -343,9 +343,9 @@ GameObject:
   - component: {fileID: 33074964339717108}
   - component: {fileID: 65053346135253672}
   - component: {fileID: 23073718825419252}
-  m_Layer: 10
+  m_Layer: 9
   m_Name: Wall Piece
-  m_TagString: Obstacle
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -376,9 +376,9 @@ GameObject:
   - component: {fileID: 33352158100001616}
   - component: {fileID: 65030496706549878}
   - component: {fileID: 23135941874263922}
-  m_Layer: 10
+  m_Layer: 9
   m_Name: Wall Piece
-  m_TagString: Obstacle
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -445,9 +445,9 @@ GameObject:
   - component: {fileID: 33530921814925238}
   - component: {fileID: 65107959994669000}
   - component: {fileID: 23579569203724036}
-  m_Layer: 10
+  m_Layer: 9
   m_Name: Wall Piece
-  m_TagString: Obstacle
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -680,9 +680,9 @@ GameObject:
   - component: {fileID: 33684677170845684}
   - component: {fileID: 65110442506339420}
   - component: {fileID: 23255469111757642}
-  m_Layer: 10
+  m_Layer: 9
   m_Name: Wall Piece
-  m_TagString: Obstacle
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1328,7 +1328,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 0aaa50d34653eac4bbc7c12fb9b03c72, type: 2}
+  - {fileID: 2100000, guid: f6fce69521180f74aa47bb65945b0b1f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1362,7 +1362,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 0aaa50d34653eac4bbc7c12fb9b03c72, type: 2}
+  - {fileID: 2100000, guid: f6fce69521180f74aa47bb65945b0b1f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1396,7 +1396,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 0aaa50d34653eac4bbc7c12fb9b03c72, type: 2}
+  - {fileID: 2100000, guid: f6fce69521180f74aa47bb65945b0b1f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1430,7 +1430,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 0aaa50d34653eac4bbc7c12fb9b03c72, type: 2}
+  - {fileID: 2100000, guid: f6fce69521180f74aa47bb65945b0b1f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1600,7 +1600,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 0aaa50d34653eac4bbc7c12fb9b03c72, type: 2}
+  - {fileID: 2100000, guid: f6fce69521180f74aa47bb65945b0b1f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1702,7 +1702,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 0aaa50d34653eac4bbc7c12fb9b03c72, type: 2}
+  - {fileID: 2100000, guid: f6fce69521180f74aa47bb65945b0b1f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1838,7 +1838,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 0aaa50d34653eac4bbc7c12fb9b03c72, type: 2}
+  - {fileID: 2100000, guid: f6fce69521180f74aa47bb65945b0b1f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1940,7 +1940,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 0aaa50d34653eac4bbc7c12fb9b03c72, type: 2}
+  - {fileID: 2100000, guid: f6fce69521180f74aa47bb65945b0b1f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2521,14 +2521,8 @@ MonoBehaviour:
   - {fileID: 114707409293262026}
   - {fileID: 114647791226730088}
   - {fileID: 114244725377305830}
-  newDoor:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
   playerInRoom: 0
   hasEnemies: 0
-  roomGenerator: {fileID: 0}
   objectPrefabs:
   - {fileID: 1989556077764900, guid: b5f32c62c7924e148b5d1023f402c809, type: 2}
   - {fileID: 1255867507407184, guid: d266fb4c51ea3f747ae2f65062ddb421, type: 2}

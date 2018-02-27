@@ -146,11 +146,9 @@ MonoBehaviour:
   - {fileID: 1469097647551568, guid: fe8dce86117a016478266c033b0b79ba, type: 2}
   - {fileID: 1984570837723522, guid: 1c7103b35398d754bbae0558d749321e, type: 2}
   - {fileID: 1457250252797362, guid: 6c763fe9e1f2b444e812994e46516420, type: 2}
-  corridor: {fileID: 1150017182438558, guid: 645ad3f2e6be26d458f5e6b4926ad053, type: 2}
-  doorwayBlocker: {fileID: 1177750063404290, guid: 94caee840f401e2458341d686d08bd8b,
-    type: 2}
+  corridor: {fileID: 1150017182438558, guid: d4c7b05e97aef924797ee96f5b1f3d91, type: 2}
   endPortal: {fileID: 1444985389806472, guid: 005ebfeddb11f3d4eaaebb2f509be89c, type: 2}
-  roomCount: 50
+  roomCount: 4
   dungeonLevel: 1
   generationFinished: 0
   player: {fileID: 100000, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 2}
@@ -190,7 +188,7 @@ Light:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1927939134}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 8
   m_Type: 1
   m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}

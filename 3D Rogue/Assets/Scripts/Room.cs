@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Collections;
+﻿using System.Collections;
 using UnityEngine;
 
 public class Room : MonoBehaviour
@@ -8,14 +7,14 @@ public class Room : MonoBehaviour
     public GameObject doorwayBlocker;
     public CorridorChecker[] doorSpawns;
     public bool playerInRoom;
-    public bool hasEnemies;
-    public RoomGenerator roomGenerator;
+    public bool hasEnemies;    
     public GameObject[] objectPrefabs;
     public Transform[] objectSpawns;
 
     private GameObject roomGenObject;
     private int objectSpawnDecider;
     private int objectTypeDecider;
+    private RoomGenerator roomGenerator;
 
     void Start()
     {

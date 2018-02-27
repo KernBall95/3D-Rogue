@@ -2,18 +2,16 @@
 
 public class Door : MonoBehaviour
 {
-    public bool hasEnemies;     //Is true if there are enemies in the room
     public bool playerInRoom;   //Is true if player is in the room
-    public bool doorIsClosed;   //Is true if the door is closed
-
+    
     private Room room;
+    private bool doorIsClosed;   //Is true if the door is closed
 
     void Start()
     {
         doorIsClosed = true;
         room = GetComponentInParent<Room>();
-        room.hasEnemies = false;
-        
+        room.hasEnemies = false;       
     }
 
     void Update()
