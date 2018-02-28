@@ -8,14 +8,13 @@ public class RoomGenerator : MonoBehaviour
     public GameObject[] rooms;                                                      //Array of different rooms that can be spawned
     public GameObject corridor;                                                     //Prefab of the corridor. May become array of multiple corridor types   
     public GameObject endPortal;                                                    //Portal which when touched by player will generate next level of dungeon
+    public GameObject player;                                                       //The player
 
     [Range(4, 99)]
     public int roomCount;                                                           //Amount of attempts to spawn rooms
-
-    public int dungeonLevel = 1;                                                    //The level of the dungeon
-    public bool generationFinished;                                                 //Is true when the generation of a dungeon level has finished
-    public GameObject player;                                                       //The player
-    public List<GameObject> spawnedObjects;                                         //A list of the objects that have been spawned
+   
+    [HideInInspector] public bool generationFinished;                               //Is true when the generation of a dungeon level has finished   
+    [HideInInspector] public List<GameObject> spawnedObjects;                       //A list of the objects that have been spawned
 
     //Private variables
     private GameObject currentRoom;                                                 //The most recent spawned room
@@ -28,7 +27,8 @@ public class RoomGenerator : MonoBehaviour
     private Transform northRay, southRay, eastRay, westRay;                         //Checks if a room is already where the generator wants to spawn a room
     private Transform northDoorSpawn, eastDoorSpawn, southDoorSpawn, westDoorSpawn; //Door spawn points
     private GameObject playerClone;
-    
+    private int dungeonLevel = 1;                                                    //The level of the dungeon
+
     void Start()
     {
         generationFinished = false;

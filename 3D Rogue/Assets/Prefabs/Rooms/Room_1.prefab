@@ -54,6 +54,7 @@ GameObject:
   - component: {fileID: 4044361056987412}
   - component: {fileID: 114547365592983200}
   - component: {fileID: 65850484138583326}
+  - component: {fileID: 114702992699476340}
   m_Layer: 0
   m_Name: Room_1
   m_TagString: Untagged
@@ -165,6 +166,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4343116833448342}
+  - component: {fileID: 114194956773479046}
   m_Layer: 0
   m_Name: Walls
   m_TagString: Untagged
@@ -2025,6 +2027,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hasCorridor: 0
   spawnPoint: {x: 0, y: 0, z: 0}
+--- !u!114 &114194956773479046
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1273541269429776}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e3fdca004f2d45fe8abbed571a8abd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_OverrideArea: 1
+  m_Area: 1
+  m_IgnoreFromBuild: 0
+  m_AffectedAgents: ffffffff
 --- !u!114 &114501147938600106
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2057,14 +2074,8 @@ MonoBehaviour:
   - {fileID: 114501147938600106}
   - {fileID: 114127943456286846}
   - {fileID: 114063457086453194}
-  newDoor:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
   playerInRoom: 0
   hasEnemies: 0
-  roomGenerator: {fileID: 0}
   objectPrefabs:
   - {fileID: 1989556077764900, guid: b5f32c62c7924e148b5d1023f402c809, type: 2}
   - {fileID: 1255867507407184, guid: d266fb4c51ea3f747ae2f65062ddb421, type: 2}
@@ -2081,6 +2092,34 @@ MonoBehaviour:
   - {fileID: 4379991362170900}
   - {fileID: 4632970479763694}
   - {fileID: 4904412326502648}
+--- !u!114 &114702992699476340
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1058957698125420}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a5ac11cc976e418e8d13136b07e1f52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_AgentTypeID: 0
+  m_CollectObjects: 0
+  m_Size: {x: 10, y: 10, z: 10}
+  m_Center: {x: 0, y: 2, z: 0}
+  m_LayerMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_UseGeometry: 0
+  m_DefaultArea: 0
+  m_IgnoreNavMeshAgent: 1
+  m_IgnoreNavMeshObstacle: 1
+  m_OverrideTileSize: 0
+  m_TileSize: 256
+  m_OverrideVoxelSize: 0
+  m_VoxelSize: 0.25
+  m_BuildHeightMesh: 0
+  m_NavMeshData: {fileID: 23800000, guid: e2370db54ed208143b500096880242a4, type: 2}
 --- !u!114 &114813112370311278
 MonoBehaviour:
   m_ObjectHideFlags: 1
