@@ -56,25 +56,45 @@ public class RoomGenerator : MonoBehaviour
 
         for (int i = 0; i <= roomCount; i++)
         {
-            yield return new WaitForSeconds(.000001f);
+            yield return new WaitForSeconds(0.000001f);
             GetDirection();
             roomNumber = Random.Range(0, 5); //Decide which room type will be spawned
             
             if (nextSpawnDirection == "North")
             {
-                GenerateNorth();               
+                Ray forward = new Ray(northRay.transform.position, northRay.transform.forward);
+                Ray downward = new Ray(northRay.transform.position, -northRay.transform.up);
+                Vector3 corridorSpawnPos = new Vector3(northDoorSpawn.transform.position.x, northDoorSpawn.transform.position.y - 2.5f, northDoorSpawn.transform.position.z);
+                Quaternion corridorRotation = Quaternion.identity;
+
+                GenerateRoom(forward, downward, corridorSpawnPos, corridorRotation);               
             }
             else if (nextSpawnDirection == "East")
             {
-                GenerateEast();               
+                Ray forward = new Ray(eastRay.transform.position, eastRay.transform.forward);
+                Ray downward = new Ray(eastRay.transform.position, -eastRay.transform.up);
+                Vector3 corridorSpawnPos = new Vector3(eastDoorSpawn.transform.position.x, eastDoorSpawn.transform.position.y - 2.5f, eastDoorSpawn.transform.position.z);
+                Quaternion corridorRotation = Quaternion.Euler(0, 90, 0);
+
+                GenerateRoom(forward, downward, corridorSpawnPos, corridorRotation);
             }
             else if (nextSpawnDirection == "South")
             {
-                GenerateSouth();               
+                Ray forward = new Ray(southRay.transform.position, southRay.transform.forward);
+                Ray downward = new Ray(southRay.transform.position, -southRay.transform.up);
+                Vector3 corridorSpawnPos = new Vector3(southDoorSpawn.transform.position.x, southDoorSpawn.transform.position.y - 2.5f, southDoorSpawn.transform.position.z);
+                Quaternion corridorRotation = Quaternion.Euler(0, 180, 0);
+
+                GenerateRoom(forward, downward, corridorSpawnPos, corridorRotation);
             }
             else if (nextSpawnDirection == "West")
             {
-                GenerateWest();              
+                Ray forward = new Ray(westRay.transform.position, westRay.transform.forward);
+                Ray downward = new Ray(westRay.transform.position, -westRay.transform.up);
+                Vector3 corridorSpawnPos = new Vector3(westDoorSpawn.transform.position.x, westDoorSpawn.transform.position.y - 2.5f, westDoorSpawn.transform.position.z);
+                Quaternion corridorRotation = Quaternion.Euler(0, -90, 0);
+
+                GenerateRoom(forward, downward, corridorSpawnPos, corridorRotation);
             }
         }
         Instantiate(endPortal, transform.position, Quaternion.identity, currentRoom.transform);
@@ -106,135 +126,44 @@ public class RoomGenerator : MonoBehaviour
         }
     }
 
-    //Generates a room to the north of the previous room
-    public void GenerateNorth()
+    //Generates the next room in the given direction
+    public void GenerateRoom(Ray forwardRay, Ray downwardRay, Vector3 corridorSpawn, Quaternion currentCorridorRotation)
     {
-        Ray forwardRay = new Ray(northRay.transform.position, northRay.transform.forward);
-        Ray downwardRay = new Ray(northRay.transform.position, -northRay.transform.up);
         RaycastHit hit;
         RaycastHit otherHit;
         if (Physics.Raycast(forwardRay, out hit, 60f) && !Physics.Raycast(downwardRay, out otherHit, 10f))
         {
-            Debug.Log("North ray hit wall");
-            Vector3 corridorSpawn = new Vector3(northDoorSpawn.transform.position.x, northDoorSpawn.transform.position.y - 2.5f, northDoorSpawn.transform.position.z);
-            GameObject newCorridor = Instantiate(corridor, corridorSpawn, Quaternion.identity);
+            GameObject newCorridor = Instantiate(corridor, corridorSpawn, currentCorridorRotation);
+
+            Debug.Log("Corridor " + hit.collider + "+" + otherHit.collider);
+
             spawnedObjects.Add(newCorridor);
         }
         else if(Physics.Raycast(forwardRay, out hit, 60f) && Physics.Raycast(downwardRay, out otherHit, 10f))
         {
-            Debug.Log("North ray hit wall and corridor");
+            Debug.Log("Already a room and corridor.");
         }
         else
         {
-            genZ += 100;
-            roomSpawnPos = new Vector3(genX, genY, genZ);
+            switch (nextSpawnDirection)
+            {
+                case "North":
+                    genZ += 100;
+                    break;
+                case "East":
+                    genX += 100;
+                    break;
+                case "South":
+                    genZ -= 100;
+                    break;
+                case "West":
+                    genX -= 100;
+                    break;
+            }
+            
+            Vector3 roomSpawnPos = new Vector3(genX, genY, genZ);
             transform.position = roomSpawnPos;
-            Vector3 corridorSpawn = new Vector3(northDoorSpawn.transform.position.x, northDoorSpawn.transform.position.y - 2.5f, northDoorSpawn.transform.position.z);
-            GameObject newCorridor = Instantiate(corridor, corridorSpawn, Quaternion.identity);
-            spawnedObjects.Add(newCorridor);
-
-            currentRoom = Instantiate(rooms[roomNumber], transform.position, Quaternion.identity);
-            spawnedObjects.Add(currentRoom);
-
-            FindRaysAndDoorSpawns();
-        }
-    }
-
-    //Generates a room to the east of the previous room
-    public void GenerateEast()
-    {
-        Ray forwardRay = new Ray(eastRay.transform.position, eastRay.transform.forward);
-        Ray downwardRay = new Ray(eastRay.transform.position, -eastRay.transform.up);
-        RaycastHit hit;
-        RaycastHit otherHit;
-        if (Physics.Raycast(forwardRay, out hit, 60f) && !Physics.Raycast(downwardRay, out otherHit, 10f))
-        {
-            Debug.Log("East Ray hit wall");
-            Vector3 corridorSpawn = new Vector3(eastDoorSpawn.transform.position.x, eastDoorSpawn.transform.position.y - 2.5f, eastDoorSpawn.transform.position.z);
-            GameObject newCorridor = Instantiate(corridor, corridorSpawn, Quaternion.Euler(0, 90, 0));
-            spawnedObjects.Add(newCorridor);
-        }
-        else if (Physics.Raycast(forwardRay, out hit, 60f) && Physics.Raycast(downwardRay, out otherHit, 10f))
-        {
-            Debug.Log("East ray hit wall and corridor");
-        }
-        else
-        {
-            genX += 100;
-            roomSpawnPos = new Vector3(genX, genY, genZ);
-            transform.position = roomSpawnPos;
-
-            Vector3 corridorSpawn = new Vector3(eastDoorSpawn.transform.position.x, eastDoorSpawn.transform.position.y - 2.5f, eastDoorSpawn.transform.position.z);
-            GameObject newCorridor = Instantiate(corridor, corridorSpawn, Quaternion.Euler(0, 90, 0));
-            spawnedObjects.Add(newCorridor);
-
-            currentRoom = Instantiate(rooms[roomNumber], transform.position, Quaternion.identity);
-            spawnedObjects.Add(currentRoom);
-
-            FindRaysAndDoorSpawns(); ;
-       }
-    }
-
-    //Generates a room to the south of the previous room
-    public void GenerateSouth()
-    {
-        Ray forwardRay = new Ray(southRay.transform.position, southRay.transform.forward);
-        Ray downwardRay = new Ray(southRay.transform.position, -southRay.transform.up);
-        RaycastHit hit;
-        RaycastHit otherHit;
-        if (Physics.Raycast(forwardRay, out hit, 60f) && !Physics.Raycast(downwardRay, out otherHit, 10f))
-        {
-            Debug.Log("South Ray hit wall");
-            Vector3 corridorSpawn = new Vector3(southDoorSpawn.transform.position.x, southDoorSpawn.transform.position.y - 2.5f, southDoorSpawn.transform.position.z);
-            GameObject newCorridor = Instantiate(corridor, corridorSpawn, Quaternion.Euler(0, 180, 0));
-            spawnedObjects.Add(newCorridor);
-        }
-        else if (Physics.Raycast(forwardRay, out hit, 60f) && Physics.Raycast(downwardRay, out otherHit, 10f))
-        {
-            Debug.Log("South ray hit wall and corridor");
-        }
-        else
-        {
-            genZ -= 100;
-            roomSpawnPos = new Vector3(genX, genY, genZ);
-            transform.position = roomSpawnPos;
-
-            Vector3 corridorSpawn = new Vector3(southDoorSpawn.transform.position.x, southDoorSpawn.transform.position.y - 2.5f, southDoorSpawn.transform.position.z);
-            GameObject newCorridor = Instantiate(corridor, corridorSpawn, Quaternion.Euler(0, 180, 0));
-            spawnedObjects.Add(newCorridor);
-
-            currentRoom = Instantiate(rooms[roomNumber], transform.position, Quaternion.identity);
-            spawnedObjects.Add(currentRoom);
-
-            FindRaysAndDoorSpawns();
-        }
-    }
-
-    //Generates a room to the west of the previous room
-    public void GenerateWest()
-    {
-        Ray forwardRay = new Ray(westRay.transform.position, westRay.transform.forward);
-        Ray downwardRay = new Ray(westRay.transform.position, -westRay.transform.up);
-        RaycastHit hit;
-        RaycastHit otherHit;
-        if (Physics.Raycast(forwardRay, out hit, 60f) && !Physics.Raycast(downwardRay, out otherHit, 10f))
-        {
-            Debug.Log("West ray hit wall");
-            Vector3 corridorSpawn = new Vector3(westDoorSpawn.transform.position.x, westDoorSpawn.transform.position.y - 2.5f, westDoorSpawn.transform.position.z);
-            GameObject newCorridor = Instantiate(corridor, corridorSpawn, Quaternion.Euler(0, -90, 0));
-            spawnedObjects.Add(newCorridor);
-        }
-        else if (Physics.Raycast(forwardRay, out hit, 60f) && Physics.Raycast(downwardRay, out otherHit, 10f))
-        {
-            Debug.Log("West ray hit wall and corridor");
-        }
-        else
-        {
-            genX -= 100;
-            roomSpawnPos = new Vector3(genX, genY, genZ);
-            transform.position = roomSpawnPos;
-            Vector3 corridorSpawn = new Vector3(westDoorSpawn.transform.position.x, westDoorSpawn.transform.position.y - 2.5f, westDoorSpawn.transform.position.z);
-            GameObject newCorridor = Instantiate(corridor, corridorSpawn, Quaternion.Euler(0, -90, 0));
+            GameObject newCorridor = Instantiate(corridor, corridorSpawn, currentCorridorRotation);
             spawnedObjects.Add(newCorridor);
 
             currentRoom = Instantiate(rooms[roomNumber], transform.position, Quaternion.identity);

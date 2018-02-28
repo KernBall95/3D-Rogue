@@ -78,6 +78,7 @@ public class Room : MonoBehaviour
             Debug.Log("Waiting...");
             yield return null;
         }
+        yield return new WaitForSeconds(0.5f);
         Debug.Log("Spawning doors");
         SpawnDoors();
     }
