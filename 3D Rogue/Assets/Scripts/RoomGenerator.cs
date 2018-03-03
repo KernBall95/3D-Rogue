@@ -51,7 +51,7 @@ public class RoomGenerator : MonoBehaviour
         roomNumber = Random.Range(0, 5);
         currentRoom = Instantiate(rooms[roomNumber], transform.position, Quaternion.identity);
         spawnedObjects.Add(currentRoom);
-        playerClone = Instantiate(player, new Vector3(0, 2, -20), Quaternion.identity);
+        playerClone = Instantiate(player, new Vector3(0, 1, -20), Quaternion.identity);
         FindRaysAndDoorSpawns();
 
         for (int i = 0; i <= roomCount; i++)
@@ -102,7 +102,7 @@ public class RoomGenerator : MonoBehaviour
     }
 
     //Generates a random number to decide direction and then translates it to a string
-    public void GetDirection()
+    void GetDirection()
     {
         roomDirNumber = Random.Range(1, 5);
 
@@ -127,7 +127,7 @@ public class RoomGenerator : MonoBehaviour
     }
 
     //Generates the next room in the given direction
-    public void GenerateRoom(Ray forwardRay, Ray downwardRay, Vector3 corridorSpawn, Quaternion currentCorridorRotation)
+    void GenerateRoom(Ray forwardRay, Ray downwardRay, Vector3 corridorSpawn, Quaternion currentCorridorRotation)
     {
         RaycastHit hit;
         RaycastHit otherHit;

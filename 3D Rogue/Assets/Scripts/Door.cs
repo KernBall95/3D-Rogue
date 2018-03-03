@@ -26,7 +26,7 @@ public class Door : MonoBehaviour
         }
     }
 
-    public void OpenDoor()
+    void OpenDoor()
     {
         Vector3 startPos = transform.position;
         Vector3 targetPos = new Vector3(startPos.x, startPos.y - 5.2f, startPos.z);
@@ -35,7 +35,7 @@ public class Door : MonoBehaviour
         doorIsClosed = false;
     }
 
-    public void CloseDoor()
+    void CloseDoor()
     {
         Vector3 startPos = transform.position;
         Vector3 targetPos = new Vector3(startPos.x, startPos.y + 5.2f, startPos.z);

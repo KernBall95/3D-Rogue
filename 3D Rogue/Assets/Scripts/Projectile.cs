@@ -4,13 +4,19 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    private float timeSinceSpawn = 0f;
+    private int timeUntilDeath = 2;
+
+
+    void Update()
+    {
+        timeSinceSpawn += Time.deltaTime;
+
+        if(timeSinceSpawn >= timeUntilDeath)
+        {
+            Destroy(this.gameObject);
+        }
+    }
+
+   
 }

@@ -10,6 +10,7 @@ TagManager:
   - Door
   - Enemy
   - Corridor
+  - Bullet
   layers:
   - Default
   - TransparentFX
