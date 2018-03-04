@@ -14,6 +14,7 @@ public class Player : Character {
     public KeyCode runKey = KeyCode.LeftShift;
     public float jumpForce = 30f;
     public Camera cam;
+    public LookTowardMouse mouseLook = new LookTowardMouse();
 
     private Rigidbody rb;
     private CapsuleCollider capsule;
@@ -22,67 +23,21 @@ public class Player : Character {
     private float stickToGroundDistance = 0.05f;
     private Vector3 groundContactNormal;
     private float currentTargetSpeed = 8f;
-
-    public LookTowardMouse mouseLook = new LookTowardMouse();
-    
-
-	// Use this for initialization
+   
 	void Start () {
         rb = GetComponent<Rigidbody>();
         capsule = GetComponent<CapsuleCollider>();
         mouseLook.Init(transform, cam.transform);
+        this.currentHealth = 10;
 	}
 	
-	// Update is called once per frame
 	void Update () {
         CheckGrounded();
         RotatePlayer();
-        
-        if (Input.GetButton("Forward"))
-        {
-            Vector3 desiredMove = cam.transform.forward;
-            desiredMove = Vector3.ProjectOnPlane(desiredMove, groundContactNormal).normalized;
+        Move();
 
-            desiredMove.x = desiredMove.x * forwardSpeed;
-            desiredMove.y = desiredMove.y * forwardSpeed;
-            desiredMove.z = desiredMove.z * forwardSpeed;
-            rb.AddForce(desiredMove, ForceMode.Impulse);
-            
-        }
-        if (Input.GetButton("Backward"))
-        {
-            Vector3 desiredMove = cam.transform.forward;
-            desiredMove = Vector3.ProjectOnPlane(desiredMove, groundContactNormal).normalized;
+        Debug.Log(this.currentHealth);
 
-            desiredMove.x = desiredMove.x * -backwardSpeed;
-            desiredMove.y = desiredMove.y * -backwardSpeed;
-            desiredMove.z = desiredMove.z * -backwardSpeed;
-            rb.AddForce(desiredMove, ForceMode.Impulse);
-            
-        }
-        if (Input.GetButton("Left"))
-        {
-            Vector3 desiredMove = cam.transform.right;
-            desiredMove = Vector3.ProjectOnPlane(desiredMove, groundContactNormal).normalized;
-
-            desiredMove.x = desiredMove.x * -strafeSpeed;
-            desiredMove.y = desiredMove.y * -strafeSpeed;
-            desiredMove.z = desiredMove.z * -strafeSpeed;
-            rb.AddForce(desiredMove, ForceMode.Impulse);
-            Debug.Log("Left");
-        }
-        if (Input.GetButton("Right"))
-        {
-            Vector3 desiredMove = cam.transform.right;
-            desiredMove = Vector3.ProjectOnPlane(desiredMove, groundContactNormal).normalized;
-
-            desiredMove.x = desiredMove.x * strafeSpeed;
-            desiredMove.y = desiredMove.y * strafeSpeed;
-            desiredMove.z = desiredMove.z * strafeSpeed;
-            rb.AddForce(desiredMove, ForceMode.Impulse);
-            Debug.Log("Right");
-        }
-        
         if (isGrounded)
         {
             isJumping = false;
@@ -97,9 +52,13 @@ public class Player : Character {
             }
             */
         }
-    }
 
-    
+        if(this.currentHealth <= 0)
+        {
+            Die(this.gameObject);
+        }
+    }
+  
     void CheckGrounded()
     {
         RaycastHit hit;
@@ -112,8 +71,7 @@ public class Player : Character {
         {
             isGrounded = false;
             groundContactNormal = Vector3.up;
-        }
-        
+        }      
     }
 
     void RotatePlayer()
@@ -125,6 +83,55 @@ public class Player : Character {
         {
             Quaternion velocityRotation = Quaternion.AngleAxis(transform.eulerAngles.y - oldRotation, Vector3.up);
             rb.velocity = velocityRotation * rb.velocity;
+        }
+    }
+
+    void OnColliderEnter(Collision other)
+    {
+        if(other.collider.tag == "Enemy")
+        {
+            TakeDamage(this, 1);
+        }
+    }
+
+    void Move()
+    {
+        if (Input.GetButton("Forward"))
+        {
+            Vector3 desiredMove = cam.transform.forward;
+            desiredMove = Vector3.ProjectOnPlane(desiredMove, groundContactNormal).normalized;
+            desiredMove.x = desiredMove.x * forwardSpeed;
+            desiredMove.y = desiredMove.y * forwardSpeed;
+            desiredMove.z = desiredMove.z * forwardSpeed;
+            rb.AddForce(desiredMove, ForceMode.Impulse);
+        }
+        if (Input.GetButton("Backward"))
+        {
+            Vector3 desiredMove = cam.transform.forward;
+            desiredMove = Vector3.ProjectOnPlane(desiredMove, groundContactNormal).normalized;
+            desiredMove.x = desiredMove.x * -backwardSpeed;
+            desiredMove.y = desiredMove.y * -backwardSpeed;
+            desiredMove.z = desiredMove.z * -backwardSpeed;
+            rb.AddForce(desiredMove, ForceMode.Impulse);
+
+        }
+        if (Input.GetButton("Left"))
+        {
+            Vector3 desiredMove = cam.transform.right;
+            desiredMove = Vector3.ProjectOnPlane(desiredMove, groundContactNormal).normalized;
+            desiredMove.x = desiredMove.x * -strafeSpeed;
+            desiredMove.y = desiredMove.y * -strafeSpeed;
+            desiredMove.z = desiredMove.z * -strafeSpeed;
+            rb.AddForce(desiredMove, ForceMode.Impulse);
+        }
+        if (Input.GetButton("Right"))
+        {
+            Vector3 desiredMove = cam.transform.right;
+            desiredMove = Vector3.ProjectOnPlane(desiredMove, groundContactNormal).normalized;
+            desiredMove.x = desiredMove.x * strafeSpeed;
+            desiredMove.y = desiredMove.y * strafeSpeed;
+            desiredMove.z = desiredMove.z * strafeSpeed;
+            rb.AddForce(desiredMove, ForceMode.Impulse);
         }
     }
 }

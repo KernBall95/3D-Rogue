@@ -4,7 +4,7 @@ using UnityEngine;
 
 abstract public class Character : MonoBehaviour {
 
-    public int maxHealth;
+    public static int maxHealth = 10;
     public int currentHealth;
     public bool isAlive;
 
@@ -15,6 +15,6 @@ abstract public class Character : MonoBehaviour {
 
     public void TakeDamage(Character characterHit, int damage)
     {
-        characterHit.currentHealth--;
+        characterHit.currentHealth -= damage;
     }
 }

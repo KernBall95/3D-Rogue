@@ -17,4 +17,12 @@ public class Enemy : Character {
 	void Update () {
 		
 	}
+
+    void OnColliderEnter(Collision other)
+    {
+        if(other.collider.tag == "Bullet")
+        {
+            TakeDamage(this, 1);
+        }
+    }
 }

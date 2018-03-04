@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ObjectClass : MonoBehaviour {
+abstract public class ObjectClass : MonoBehaviour {
 
     public int maxHealth;
     public int currentHealth;
