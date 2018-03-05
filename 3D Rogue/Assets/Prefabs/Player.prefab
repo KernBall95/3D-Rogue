@@ -468,7 +468,8 @@ MonoBehaviour:
   projectileOrigin: {fileID: 4422314570888504}
   projectile: {fileID: 54694326044805020, guid: 2bae0deb9f3ec7f459fedf48f324f6a8,
     type: 2}
-  bulletSpeed: 120
+  bulletSpeed: 275
+  fireRate: 0.3
 --- !u!114 &114278680122389530
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -480,7 +481,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 849cf4af113a1a24ea3dd2d3e9f8cee2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 0
   currentHealth: 0
   isAlive: 0
   forwardSpeed: 8

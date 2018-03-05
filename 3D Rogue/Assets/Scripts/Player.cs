@@ -36,21 +36,10 @@ public class Player : Character {
         RotatePlayer();
         Move();
 
-        Debug.Log(this.currentHealth);
-
         if (isGrounded)
         {
             isJumping = false;
             rb.drag = 5f;
-            /*if (Input.GetButtonDown("Jump"))
-            {
-                rb.drag = 5f;
-                rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
-                rb.AddForce(new Vector3(0f, jumpForce, 0f), ForceMode.Impulse);
-                isJumping = true;
-                Debug.Log("Jumping");              
-            }
-            */
         }
 
         if(this.currentHealth <= 0)

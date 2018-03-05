@@ -6,18 +6,27 @@ public class Box : ObjectClass {
 
     private bool hasItem;
 
-	// Use this for initialization
 	void Start () {
-		
-	}
+        this.currentHealth = this.maxHealth;
+    }
 	
-	// Update is called once per frame
 	void Update () {
-		
-	}
+        if (this.currentHealth <= 0)
+        {
+            DestroyObject(this.gameObject);
+        }
+    }
 
     void SpawnItem()
     {
 
+    }
+
+    void OnCollisionEnter(Collision other)
+    {
+        if (other.collider.tag == "Bullet")
+        {
+            TakeDamage(this, 1);
+        }
     }
 }

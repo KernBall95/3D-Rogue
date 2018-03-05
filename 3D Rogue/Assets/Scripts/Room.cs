@@ -75,11 +75,9 @@ public class Room : MonoBehaviour
     {
         while(roomGenerator.generationFinished == false)
         {
-            Debug.Log("Waiting...");
             yield return null;
         }
         yield return new WaitForSeconds(0.5f);
-        Debug.Log("Spawning doors");
         SpawnDoors();
     }
 

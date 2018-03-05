@@ -7,22 +7,13 @@ abstract public class ObjectClass : MonoBehaviour {
     public int maxHealth;
     public int currentHealth;
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
-
-    public void TakeDamage()
+    public void TakeDamage(ObjectClass obj, int damage)
     {
-
+        obj.currentHealth -= damage;
     }
-    public void DestroyObject()
-    {
 
+    public void DestroyObject(GameObject objectToBeDestroyed)
+    {
+        Destroy(objectToBeDestroyed);
     }
 }

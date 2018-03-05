@@ -135,8 +135,6 @@ public class RoomGenerator : MonoBehaviour
         {
             GameObject newCorridor = Instantiate(corridor, corridorSpawn, currentCorridorRotation);
 
-            Debug.Log("Corridor " + hit.collider + "+" + otherHit.collider);
-
             spawnedObjects.Add(newCorridor);
         }
         else if(Physics.Raycast(forwardRay, out hit, 60f) && Physics.Raycast(downwardRay, out otherHit, 10f))
