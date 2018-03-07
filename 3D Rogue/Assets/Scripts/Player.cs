@@ -9,10 +9,7 @@ public class Player : Character {
 
     public float forwardSpeed = 8.0f;
     public float backwardSpeed = 4.0f;
-    public float strafeSpeed = 6.0f;
-    public int runMulitplier = 2;
-    public KeyCode runKey = KeyCode.LeftShift;
-    public float jumpForce = 30f;
+    public float strafeSpeed = 6.0f;   
     public Camera cam;
     public LookTowardMouse mouseLook = new LookTowardMouse();
 
@@ -23,8 +20,11 @@ public class Player : Character {
     private float stickToGroundDistance = 0.05f;
     private Vector3 groundContactNormal;
     private float currentTargetSpeed = 8f;
-   
-	void Start () {
+    private KeyCode runKey = KeyCode.LeftShift;
+    private float runMulitplier = 1.5f;
+    private int jumpForce = 1300;
+
+    void Start () {
         rb = GetComponent<Rigidbody>();
         capsule = GetComponent<CapsuleCollider>();
         mouseLook.Init(transform, cam.transform);
@@ -40,6 +40,12 @@ public class Player : Character {
         {
             isJumping = false;
             rb.drag = 5f;
+        }
+        else
+        {
+            isJumping = true;
+            rb.drag = 0f;
+            Debug.Log("Jumping");
         }
 
         if(this.currentHealth <= 0)
@@ -85,7 +91,25 @@ public class Player : Character {
 
     void Move()
     {
-        if (Input.GetButton("Forward"))
+        
+        if (Input.GetKeyDown(runKey))
+        {
+            forwardSpeed *= runMulitplier;
+            backwardSpeed *= runMulitplier;
+            strafeSpeed *= runMulitplier;
+        }
+        else if (Input.GetKeyUp(runKey))
+        {
+            forwardSpeed /= runMulitplier;
+            backwardSpeed /= runMulitplier;
+            strafeSpeed /= runMulitplier;
+        }
+
+        if(Input.GetButtonDown("Jump"))
+        {
+            rb.AddForce(0, jumpForce, 0);
+        }
+        if (Input.GetButton("Forward") && isJumping == false)
         {
             Vector3 desiredMove = cam.transform.forward;
             desiredMove = Vector3.ProjectOnPlane(desiredMove, groundContactNormal).normalized;
@@ -94,7 +118,7 @@ public class Player : Character {
             desiredMove.z = desiredMove.z * forwardSpeed;
             rb.AddForce(desiredMove, ForceMode.Impulse);
         }
-        if (Input.GetButton("Backward"))
+        if (Input.GetButton("Backward") && isJumping == false)
         {
             Vector3 desiredMove = cam.transform.forward;
             desiredMove = Vector3.ProjectOnPlane(desiredMove, groundContactNormal).normalized;
@@ -104,17 +128,18 @@ public class Player : Character {
             rb.AddForce(desiredMove, ForceMode.Impulse);
 
         }
-        if (Input.GetButton("Left"))
+        if (Input.GetButton("Left") && isJumping == false)
         {
             Vector3 desiredMove = cam.transform.right;
             desiredMove = Vector3.ProjectOnPlane(desiredMove, groundContactNormal).normalized;
             desiredMove.x = desiredMove.x * -strafeSpeed;
             desiredMove.y = desiredMove.y * -strafeSpeed;
             desiredMove.z = desiredMove.z * -strafeSpeed;
+            
             rb.AddForce(desiredMove, ForceMode.Impulse);
         }
-        if (Input.GetButton("Right"))
-        {
+        if (Input.GetButton("Right") && isJumping == false)
+        {            
             Vector3 desiredMove = cam.transform.right;
             desiredMove = Vector3.ProjectOnPlane(desiredMove, groundContactNormal).normalized;
             desiredMove.x = desiredMove.x * strafeSpeed;

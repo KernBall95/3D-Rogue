@@ -468,7 +468,7 @@ MonoBehaviour:
   projectileOrigin: {fileID: 4422314570888504}
   projectile: {fileID: 54694326044805020, guid: 2bae0deb9f3ec7f459fedf48f324f6a8,
     type: 2}
-  bulletSpeed: 275
+  bulletSpeed: 225
   fireRate: 0.3
 --- !u!114 &114278680122389530
 MonoBehaviour:
@@ -486,9 +486,9 @@ MonoBehaviour:
   forwardSpeed: 8
   backwardSpeed: 4
   strafeSpeed: 6
-  runMulitplier: 2
+  runMulitplier: 1.5
   runKey: 304
-  jumpForce: 30
+  jumpForce: 1300
   cam: {fileID: 20070208890961842}
   mouseLook:
     XSensitivity: 2

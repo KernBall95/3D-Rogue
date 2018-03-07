@@ -7,12 +7,10 @@ public class ExplosiveBarrel : ObjectClass {
     
     public ParticleSystem explosion;
 
-    private int damage;
-    private Collider explosionRadius;
     private bool stopUpdate = false;
-    
+      
 	void Start () {
-        this.currentHealth = this.maxHealth;
+        this.currentHealth = this.maxHealth;       
 	}
 
     void Update()
@@ -23,11 +21,6 @@ public class ExplosiveBarrel : ObjectClass {
             Instantiate(explosion, transform.position, Quaternion.Euler(-90, 0, 0));
             stopUpdate = true;
         }
-    }
-
-    void ApplyDamage()
-    {
-        
     }
 
     void OnCollisionEnter(Collision other)
