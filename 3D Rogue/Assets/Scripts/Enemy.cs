@@ -13,6 +13,8 @@ public class Enemy : Character {
     public float maxSpeed = 5;
     public float maxSteer = 2;
     private Rigidbody rb;
+    private float enemyDetectionRange = 20f;
+    private Room room;
 
 	// Use this for initialization
 	void Start () {
@@ -20,18 +22,23 @@ public class Enemy : Character {
         Debug.Log("Target");
         this.currentHealth = this.maxHealth / 2;
         rb = GetComponent<Rigidbody>();
-
+        room = GetComponentInParent<Room>();
 	}
 	
 	// Update is called once per frame
 	void Update () {
         target = GameObject.FindGameObjectWithTag("Player").transform.position;
-        Seek(transform.position, target);
+
+        if(Vector3.Distance(target, transform.position) < enemyDetectionRange)
+        {
+            Seek(transform.position, target);
+        }
+        
         if (this.currentHealth <= 0 && stopUpdate == false)
         {
             Die(this.gameObject);
             stopUpdate = true;
-            Debug.Log("Enemy killed");
+            room.enemyCount--;
             
         }
         
@@ -42,7 +49,6 @@ public class Enemy : Character {
         if(other.collider.tag == "Bullet")
         {
             TakeDamage(this, 1);
-            Debug.Log("Hurt enemy");
         }
     }
 
@@ -60,7 +66,6 @@ public class Enemy : Character {
         if(newVelocity.magnitude > maxSpeed)
         newVelocity = Vector3.ClampMagnitude(newVelocity, maxSpeed);
         rb.velocity += newVelocity;
-
         
     }
 }
