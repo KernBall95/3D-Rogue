@@ -4,7 +4,7 @@ using UnityEngine;
 
 abstract public class Character : MonoBehaviour {
 
-    public static int maxHealth = 10;
+    public int maxHealth = 10;
     public int currentHealth;
     public bool isAlive;
 

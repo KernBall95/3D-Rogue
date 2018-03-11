@@ -58,7 +58,7 @@ public class RoomGenerator : MonoBehaviour
         {
             yield return new WaitForSeconds(0.000001f);
             GetDirection();
-            roomNumber = Random.Range(0, 5); //Decide which room type will be spawned
+            roomNumber = Random.Range(0, 4); //Decide which room type will be spawned
             
             if (nextSpawnDirection == "North")
             {
