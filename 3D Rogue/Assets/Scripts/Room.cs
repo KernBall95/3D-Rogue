@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Room : MonoBehaviour
@@ -18,6 +19,8 @@ public class Room : MonoBehaviour
     private int objectSpawnDecider;
     private int objectTypeDecider;
     private RoomGenerator roomGenerator;
+    public List<Door> doors;
+    private bool doorsAreClosed = false;
     
     void Start()
     {
@@ -32,7 +35,7 @@ public class Room : MonoBehaviour
 
     void Update()
     {
-        DetectEnemies();
+        DetectEnemies();     
     }
 
     //Check if player enters room
@@ -72,7 +75,9 @@ public class Room : MonoBehaviour
         {
             if (doorSpawns[i].hasCorridor == true) //Instantiate door if there is a corridor
             {
-                Instantiate(doorPrefab, doorSpawns[i].spawnPoint, doorSpawns[i].gameObject.transform.rotation, transform);
+                doorSpawns[i].spawnPoint = new Vector3(doorSpawns[i].spawnPoint.x, doorSpawns[i].spawnPoint.y - 5.2f, doorSpawns[i].spawnPoint.z);
+                Door door = Instantiate(doorPrefab, doorSpawns[i].spawnPoint, doorSpawns[i].gameObject.transform.rotation, transform).GetComponent<Door>();
+                doors.Add(door);
             }
             else //Instantiate a doorway blocker if there is no corridor
             {
@@ -96,11 +101,22 @@ public class Room : MonoBehaviour
 
     void DetectEnemies()
     {
-        if (enemyCount > 0)
+        if (enemyCount > 0 && doorsAreClosed == false && playerInRoom == true)
         {
-            hasEnemies = true;
+            for (int i = 0; i < doors.Count; i++)
+            {
+                doors[i].CloseDoor();
+            }
+            doorsAreClosed = true;
         }
-        else hasEnemies = false;
+        else if (enemyCount == 0 && doorsAreClosed == true)
+        {
+            for (int i = 0; i < doors.Count; i++)
+            {
+                doors[i].OpenDoor();
+            }
+            doorsAreClosed = false;
+        }
     }
 
     private IEnumerator WaitForGen()

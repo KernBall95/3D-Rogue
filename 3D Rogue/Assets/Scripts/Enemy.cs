@@ -17,9 +17,7 @@ public class Enemy : Character {
     private Room room;
 
 	// Use this for initialization
-	void Start () {
-        
-        Debug.Log("Target");
+	void Awake () {       
         this.currentHealth = this.maxHealth / 2;
         rb = GetComponent<Rigidbody>();
         room = GetComponentInParent<Room>();
@@ -33,15 +31,17 @@ public class Enemy : Character {
         {
             Seek(transform.position, target);
         }
+        else
+        {
+            //Wander();
+        }
         
         if (this.currentHealth <= 0 && stopUpdate == false)
         {
             Die(this.gameObject);
             stopUpdate = true;
-            room.enemyCount--;
-            
-        }
-        
+            room.enemyCount--;   
+        }        
 	}
 
     void OnCollisionEnter(Collision other)
@@ -55,6 +55,7 @@ public class Enemy : Character {
     void Seek(Vector3 vehicle, Vector3 target)
     {
         Vector3 desiredVelocity = target - vehicle;
+        desiredVelocity.y = 1f;
         desiredVelocity = desiredVelocity.normalized;
         desiredVelocity *= maxSpeed;
         Vector3 steeringForce = desiredVelocity - rb.velocity;
@@ -64,8 +65,29 @@ public class Enemy : Character {
         }
         Vector3 newVelocity = rb.velocity + steeringForce;
         if(newVelocity.magnitude > maxSpeed)
-        newVelocity = Vector3.ClampMagnitude(newVelocity, maxSpeed);
-        rb.velocity += newVelocity;
+        {
+            newVelocity = Vector3.ClampMagnitude(newVelocity, maxSpeed);
+        }
         
+        rb.velocity += newVelocity;       
+    }
+
+    void Wander()
+    {
+        Vector3 displacement = new Vector3(rb.velocity.x + Random.Range(-25, 25), 1f, rb.velocity.z + Random.Range(-25, 25));
+        Vector3 desiredVelocity = rb.velocity + displacement;
+        desiredVelocity = desiredVelocity.normalized;
+        desiredVelocity *= maxSpeed;
+        Vector3 steeringForce = desiredVelocity - rb.velocity;
+        if(steeringForce.magnitude > maxSteer)
+        {
+            steeringForce = Vector3.ClampMagnitude(steeringForce, maxSteer);
+        }
+        Vector3 newVelocity = rb.velocity + steeringForce;
+        if (newVelocity.magnitude > maxSpeed)
+        {
+            newVelocity = Vector3.ClampMagnitude(newVelocity, maxSpeed);
+        }
+        rb.velocity += newVelocity;
     }
 }
