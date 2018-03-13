@@ -481,14 +481,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 849cf4af113a1a24ea3dd2d3e9f8cee2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxHealth: 5
   currentHealth: 0
   isAlive: 0
   forwardSpeed: 8
   backwardSpeed: 4
   strafeSpeed: 6
-  runMulitplier: 1.5
-  runKey: 304
-  jumpForce: 1300
   cam: {fileID: 20070208890961842}
   mouseLook:
     XSensitivity: 2

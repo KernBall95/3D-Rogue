@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 [RequireComponent(typeof(Rigidbody))]
 [RequireComponent(typeof(CapsuleCollider))]
@@ -13,12 +14,13 @@ public class Enemy : Character {
     public float maxSpeed = 5;
     public float maxSteer = 2;
     private Rigidbody rb;
-    private float enemyDetectionRange = 20f;
+    private float enemyDetectionRange = 50f;
     private Room room;
+    
 
 	// Use this for initialization
 	void Awake () {       
-        this.currentHealth = this.maxHealth / 2;
+        this.currentHealth = this.maxHealth;
         rb = GetComponent<Rigidbody>();
         room = GetComponentInParent<Room>();
 	}
@@ -27,13 +29,22 @@ public class Enemy : Character {
 	void Update () {
         target = GameObject.FindGameObjectWithTag("Player").transform.position;
 
-        if(Vector3.Distance(target, transform.position) < enemyDetectionRange)
+        if(room.playerInRoom == true)
         {
-            Seek(transform.position, target);
+            if(gameObject.name == "Enemy 1(Clone)")
+            {
+                Seek(transform.position, target);
+            }
+            else if(gameObject.name == "Enemy 2(Clone)")
+            {
+                GetComponent<NavMeshAgent>().destination = target;
+                Debug.Log("agent");
+            }
+            
         }
         else
         {
-            //Wander();
+            Wander();
         }
         
         if (this.currentHealth <= 0 && stopUpdate == false)

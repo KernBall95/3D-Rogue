@@ -81,11 +81,12 @@ public class Player : Character {
         }
     }
 
-    void OnColliderEnter(Collision other)
+    void OnCollisionEnter(Collision other)
     {
         if(other.collider.tag == "Enemy")
         {
             TakeDamage(this, 1);
+            Debug.Log(currentHealth);
         }
     }
 

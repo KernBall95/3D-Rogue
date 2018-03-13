@@ -12,7 +12,7 @@ public class Room : MonoBehaviour
     public GameObject[] objectPrefabs;
     public Transform[] objectSpawns;
     public Transform[] enemySpawns;
-    public GameObject enemyPrefab;
+    public GameObject[] enemyPrefabs;
     [HideInInspector] public int enemyCount = 0;
 
     private GameObject roomGenObject;
@@ -21,6 +21,7 @@ public class Room : MonoBehaviour
     private RoomGenerator roomGenerator;
     public List<Door> doors;
     private bool doorsAreClosed = false;
+    private int enemyType;
     
     void Start()
     {
@@ -93,7 +94,8 @@ public class Room : MonoBehaviour
             objectSpawnDecider = Random.Range(0, 2);
             if(objectSpawnDecider == 1)
             {
-                Instantiate(enemyPrefab, enemySpawns[i].position, Quaternion.identity, transform);
+                enemyType = Random.Range(0, 2);
+                Instantiate(enemyPrefabs[enemyType], enemySpawns[i].position, Quaternion.identity, transform);
                 enemyCount++;
             }
         }
@@ -118,6 +120,7 @@ public class Room : MonoBehaviour
             doorsAreClosed = false;
         }
     }
+
 
     private IEnumerator WaitForGen()
     {
