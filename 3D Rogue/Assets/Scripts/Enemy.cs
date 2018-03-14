@@ -14,15 +14,19 @@ public class Enemy : Character {
     public float maxSpeed = 5;
     public float maxSteer = 2;
     private Rigidbody rb;
-    private float enemyDetectionRange = 50f;
     private Room room;
+    private float maxFlockDistance;
+    private float minFlockDistance;
+    private Vector3 alignment;
+    private Vector3 cohesion;
+    private Vector3 seperation;
     
-
 	// Use this for initialization
 	void Awake () {       
         this.currentHealth = this.maxHealth;
         rb = GetComponent<Rigidbody>();
         room = GetComponentInParent<Room>();
+        
 	}
 	
 	// Update is called once per frame
@@ -31,7 +35,7 @@ public class Enemy : Character {
 
         if(room.playerInRoom == true)
         {
-            if(gameObject.name == "Enemy 1(Clone)")
+            if(gameObject.name == "Enemy(Clone)" || gameObject.name == "Enemy 3(Clone)")
             {
                 Seek(transform.position, target);
             }
@@ -40,7 +44,6 @@ public class Enemy : Character {
                 GetComponent<NavMeshAgent>().destination = target;
                 Debug.Log("agent");
             }
-            
         }
         else
         {

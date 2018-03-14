@@ -51,7 +51,7 @@ public class RoomGenerator : MonoBehaviour
         roomNumber = Random.Range(0, 5);
         currentRoom = Instantiate(rooms[roomNumber], transform.position, Quaternion.identity);
         spawnedObjects.Add(currentRoom);
-        playerClone = Instantiate(player, new Vector3(0, 1, -20), Quaternion.identity);
+        playerClone = Instantiate(player, new Vector3(0, 1.8f, -20), Quaternion.identity);
         FindRaysAndDoorSpawns();
 
         for (int i = 0; i <= roomCount; i++)

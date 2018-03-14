@@ -22,12 +22,25 @@ public class Explosion : MonoBehaviour {
         Debug.Log(player.currentHealth);
     }
 
+    void ApplyDamageToObject(ObjectClass obj, int explosionDamage)
+    {
+        obj.currentHealth -= explosionDamage;
+    }
+
     void OnTriggerEnter(Collider other)
     {
         if(other.tag == "Player")
         {
             ApplyDamage(other.GetComponent<Character>(), damage);
             Debug.Log("Damage player");
+        }
+        else if(other.tag == "Enemy")
+        {
+            ApplyDamage(other.GetComponent<Character>(), damage * 2);
+        }
+        else if(other.tag == "Obstacle")
+        {
+            ApplyDamageToObject(other.GetComponent<ObjectClass>(), damage * 5);
         }
     }
 }

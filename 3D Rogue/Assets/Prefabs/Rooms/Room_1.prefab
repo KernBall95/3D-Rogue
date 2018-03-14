@@ -2413,6 +2413,7 @@ MonoBehaviour:
   enemyPrefabs:
   - {fileID: 1849509526571464, guid: 5b609a29491191e4b828a68baa56bbe3, type: 2}
   - {fileID: 1673241585033780, guid: 894f3317db1ee984ab71f70aad8bb9d6, type: 2}
+  - {fileID: 1582721306922100, guid: 1e8f572e071f5bf4b9a58534f362911a, type: 2}
   enemyCount: 0
   doors: []
 --- !u!114 &114702992699476340

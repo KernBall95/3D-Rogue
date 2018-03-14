@@ -7,7 +7,7 @@ public class Weapon : MonoBehaviour {
     public Transform projectileOrigin;
     public Rigidbody projectile;
     public float bulletSpeed;
-    public float fireRate = 1f;
+    public float fireRate = .1f;
     private Rigidbody rb;
     private IEnumerator coroutine;
     private bool allowFire = true;

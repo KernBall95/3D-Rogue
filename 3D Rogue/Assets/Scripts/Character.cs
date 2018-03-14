@@ -6,7 +6,7 @@ abstract public class Character : MonoBehaviour {
 
     public int maxHealth = 10;
     public int currentHealth;
-    public bool isAlive;
+    //public bool isAlive;
 
     public void Die(GameObject characterToDie)
     {
