@@ -25,8 +25,7 @@ public class Enemy : Character {
 	void Awake () {       
         this.currentHealth = this.maxHealth;
         rb = GetComponent<Rigidbody>();
-        room = GetComponentInParent<Room>();
-        
+        room = GetComponentInParent<Room>();       
 	}
 	
 	// Update is called once per frame
@@ -81,9 +80,9 @@ public class Enemy : Character {
         if(newVelocity.magnitude > maxSpeed)
         {
             newVelocity = Vector3.ClampMagnitude(newVelocity, maxSpeed);
-        }
-        
-        rb.velocity += newVelocity;       
+        }      
+        rb.velocity += newVelocity;
+        transform.rotation = Quaternion.LookRotation(rb.velocity);
     }
 
     void Wander()
@@ -103,5 +102,6 @@ public class Enemy : Character {
             newVelocity = Vector3.ClampMagnitude(newVelocity, maxSpeed);
         }
         rb.velocity += newVelocity;
+        transform.rotation = Quaternion.LookRotation(rb.velocity);
     }
 }

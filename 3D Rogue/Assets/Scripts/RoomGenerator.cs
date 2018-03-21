@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class RoomGenerator : MonoBehaviour
 {
@@ -28,6 +29,7 @@ public class RoomGenerator : MonoBehaviour
     private Transform northDoorSpawn, eastDoorSpawn, southDoorSpawn, westDoorSpawn; //Door spawn points
     private GameObject playerClone;
     private int dungeonLevel = 1;                                                    //The level of the dungeon
+    private Text dungeonLevelText;
 
     void Start()
     {
@@ -35,7 +37,10 @@ public class RoomGenerator : MonoBehaviour
 
         //Main generation loop
         IEnumerator coroutine = GenerationLoop();
-        StartCoroutine(coroutine);      
+        StartCoroutine(coroutine);
+        dungeonLevelText = GameObject.Find("Text").GetComponent<Text>();
+        dungeonLevelText.text = "Dungeon Level: " + dungeonLevel.ToString();
+        playerClone = Instantiate(player, new Vector3(0, 1.8f, -20), Quaternion.identity);
     }
 
     IEnumerator GenerationLoop()
@@ -51,7 +56,7 @@ public class RoomGenerator : MonoBehaviour
         roomNumber = Random.Range(0, 5);
         currentRoom = Instantiate(rooms[roomNumber], transform.position, Quaternion.identity);
         spawnedObjects.Add(currentRoom);
-        playerClone = Instantiate(player, new Vector3(0, 1.8f, -20), Quaternion.identity);
+        
         FindRaysAndDoorSpawns();
 
         for (int i = 0; i <= roomCount; i++)
@@ -192,7 +197,6 @@ public class RoomGenerator : MonoBehaviour
         {
             Destroy(spawnedObjects[i]);          
         }
-        Destroy(playerClone);
         spawnedObjects.Clear();
         dungeonLevel++;
         if(roomCount < 99)
@@ -206,5 +210,6 @@ public class RoomGenerator : MonoBehaviour
         generationFinished = false;
         IEnumerator coroutine = GenerationLoop();
         StartCoroutine(coroutine);
+        playerClone.transform.position = new Vector3(0, 1.8f, -20);
     }
 }

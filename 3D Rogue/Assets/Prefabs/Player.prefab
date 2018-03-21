@@ -429,7 +429,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 80
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!81 &81710837205104274
 AudioListener:
   m_ObjectHideFlags: 1

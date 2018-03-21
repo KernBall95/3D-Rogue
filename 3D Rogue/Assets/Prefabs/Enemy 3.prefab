@@ -27,7 +27,7 @@ GameObject:
   - component: {fileID: 54089859553479238}
   m_Layer: 13
   m_Name: Enemy 3
-  m_TagString: Flock Enemy
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -112,7 +112,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7f7bbbb918588b45bcf552c2dec504d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 10
+  maxHealth: 1
   currentHealth: 0
   maxSpeed: 5
   maxSteer: 4.83

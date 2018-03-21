@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System;
 using UnityEngine;
+using UnityEngine.UI;
 
 [RequireComponent(typeof(Rigidbody))]
 [RequireComponent(typeof(CapsuleCollider))]
@@ -12,7 +13,7 @@ public class Player : Character {
     public float strafeSpeed = 6.0f;   
     public Camera cam;
     public LookTowardMouse mouseLook = new LookTowardMouse();
-
+    
     private Rigidbody rb;
     private CapsuleCollider capsule;
     private bool isGrounded, jump, isJumping;
@@ -23,12 +24,15 @@ public class Player : Character {
     private KeyCode runKey = KeyCode.LeftShift;
     private float runMulitplier = 1.5f;
     private int jumpForce = 1300;
+    private Slider healthBar;
 
     void Start () {
         rb = GetComponent<Rigidbody>();
         capsule = GetComponent<CapsuleCollider>();
         mouseLook.Init(transform, cam.transform);
-        this.currentHealth = 10;
+        this.currentHealth = this.maxHealth;
+        healthBar = GameObject.Find("Health Bar").GetComponent<Slider>();
+        healthBar.value = this.currentHealth;
 	}
 	
 	void Update () {
@@ -86,6 +90,7 @@ public class Player : Character {
         if(other.collider.tag == "Enemy")
         {
             TakeDamage(this, 1);
+            healthBar.value--;
             Debug.Log(currentHealth);
         }
     }
