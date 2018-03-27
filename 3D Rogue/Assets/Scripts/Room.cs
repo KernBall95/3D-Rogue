@@ -94,7 +94,7 @@ public class Room : MonoBehaviour
             objectSpawnDecider = Random.Range(0, 2);
             if(objectSpawnDecider == 1)
             {
-                enemyType = Random.Range(0, 3);
+                enemyType = Random.Range(0, 2);
                 if (enemyType == 0 || enemyType == 1)
                 {
                     Instantiate(enemyPrefabs[enemyType], enemySpawns[i].position, Quaternion.identity, transform);
