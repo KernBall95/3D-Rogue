@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
 
 abstract public class Item : MonoBehaviour {
-    [HideInInspector]public string name;
-    private float rotateSpeed = 100f;
+    public string itemName;
+    public float rotateSpeed = 100f;
 
     public void RotateItem()
     {

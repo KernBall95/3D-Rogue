@@ -8,12 +8,14 @@ using UnityEngine.UI;
 [RequireComponent(typeof(CapsuleCollider))]
 public class Player : Character {
 
+    [Header("Speed Settings")]
     public float forwardSpeed = 8.0f;
     public float backwardSpeed = 4.0f;
-    public float strafeSpeed = 6.0f;   
-    public Camera cam;
-    public LookTowardMouse mouseLook = new LookTowardMouse();
+    public float strafeSpeed = 6.0f; 
     
+    [Header("Player Camera")]
+    public Camera cam;
+       
     private Rigidbody rb;
     private CapsuleCollider capsule;
     private bool isGrounded, jump, isJumping;
@@ -25,6 +27,7 @@ public class Player : Character {
     private float runMulitplier = 1.5f;
     private int jumpForce = 1300;
     private Slider healthBar;
+    private LookTowardMouse mouseLook = new LookTowardMouse();
 
     void Start () {
         rb = GetComponent<Rigidbody>();

@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 33078115413028488}
   - component: {fileID: 23541771189105556}
   - component: {fileID: 65964215458063492}
-  - component: {fileID: 114470106551520704}
+  - component: {fileID: 114212935082307570}
   m_Layer: 0
   m_Name: Health Pickup
   m_TagString: Untagged
@@ -162,7 +162,7 @@ Light:
   m_UseColorTemperature: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
---- !u!114 &114470106551520704
+--- !u!114 &114212935082307570
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -170,7 +170,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1780968970651222}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cf9d3411ec78ad54d9a8e656ac89e039, type: 3}
+  m_Script: {fileID: 11500000, guid: 0e0a6359c4387c24ca6e8b394bbdd077, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: 
+  itemName: 
+  rotateSpeed: 100
+  type: 0
+  pickupName: 
+  speedBonus: 1
+  healthBonus: 1
+  fireRateBonus: -0.05

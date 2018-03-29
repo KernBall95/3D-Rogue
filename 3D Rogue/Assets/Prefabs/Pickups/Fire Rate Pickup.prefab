@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 33584643926470702}
   - component: {fileID: 23653394273656444}
   - component: {fileID: 65449208804741684}
-  - component: {fileID: 114864494987182648}
+  - component: {fileID: 114133053051034734}
   m_Layer: 0
   m_Name: Fire Rate Pickup
   m_TagString: Untagged
@@ -162,7 +162,7 @@ Light:
   m_UseColorTemperature: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
---- !u!114 &114864494987182648
+--- !u!114 &114133053051034734
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -170,7 +170,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1137895368918540}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4f0438a4df741bb44bb17de3eb890ca9, type: 3}
+  m_Script: {fileID: 11500000, guid: 0e0a6359c4387c24ca6e8b394bbdd077, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: 
+  itemName: 
+  rotateSpeed: 100
+  type: 2
+  pickupName: 
+  speedBonus: 1
+  healthBonus: 1
+  fireRateBonus: -0.05
