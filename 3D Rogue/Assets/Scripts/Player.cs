@@ -39,7 +39,7 @@ public class Player : Character {
         CheckGrounded();
         RotatePlayer();
         Move();
-
+        healthBar.value = currentHealth;
         if (isGrounded)
         {
             isJumping = false;
@@ -90,8 +90,6 @@ public class Player : Character {
         if(other.collider.tag == "Enemy")
         {
             TakeDamage(this, 1);
-            healthBar.value--;
-            Debug.Log(currentHealth);
         }
     }
 

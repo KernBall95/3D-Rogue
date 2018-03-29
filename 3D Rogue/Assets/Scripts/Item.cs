@@ -1,44 +1,35 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 abstract public class Item : MonoBehaviour {
-    public string name;
+    [HideInInspector]public string name;
+    private float rotateSpeed = 100f;
+
+    public void RotateItem()
+    {
+        transform.Rotate(Vector3.up, rotateSpeed * Time.deltaTime);
+    }
 
     public void DestroyItem()
     {
         Destroy(this.gameObject);
     }
-    public void UpdatePlayerStats(Player player, string pickupType, PlayerUpgrade upgrade)
+    
+    public void AddHealth(Player player, int healthBonus)
     {
-        switch (pickupType)
-        {
-            case "Health":
-                player.currentHealth += upgrade.healthBonus;
-                break;
-            case "Speed":
-                player.forwardSpeed += upgrade.playerSpeedBonus;
-                player.backwardSpeed += upgrade.playerSpeedBonus;
-                player.strafeSpeed += upgrade.playerSpeedBonus;
-                break;
-            case "Max Health":
-                player.maxHealth += upgrade.maxHealthBonus;
-                break;
-            default:
-                Debug.LogError("Invalid pickup type!");
-                break;
-        }
+        player.currentHealth += healthBonus;
+        DestroyItem();
     }
-    public void UpdateWeaponStats(Weapon gun, string pickupType, PlayerUpgrade upgrade)
+
+    public void AddSpeed(Player player, float speedBonus)
     {
-        switch (pickupType)
-        {
-            case "Fire Rate":
-                gun.fireRate += upgrade.fireRateBonus;
-                break;
-            default:
-                Debug.LogError("Invalid pickup type!");
-                break;
-        }
+        player.forwardSpeed += speedBonus;
+        player.backwardSpeed += speedBonus;
+        player.strafeSpeed += speedBonus;
+        DestroyItem();
+    }
+    public void IncreaseFireRate(Weapon gun, float fireRateBonus)
+    {
+        gun.fireRate += fireRateBonus;
+        DestroyItem();
     }
 }

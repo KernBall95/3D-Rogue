@@ -38,13 +38,15 @@ public class RoomGenerator : MonoBehaviour
         //Main generation loop
         IEnumerator coroutine = GenerationLoop();
         StartCoroutine(coroutine);
-        dungeonLevelText = GameObject.Find("Text").GetComponent<Text>();
-        dungeonLevelText.text = "Dungeon Level: " + dungeonLevel.ToString();
+        
         playerClone = Instantiate(player, new Vector3(0, 1.8f, -20), Quaternion.identity);
     }
 
     IEnumerator GenerationLoop()
-    {       
+    {
+        dungeonLevelText = GameObject.Find("Text").GetComponent<Text>();
+        dungeonLevelText.text = "Dungeon Level: " + dungeonLevel.ToString();
+
         //Set starting point
         genX = 0;
         genY = 0;

@@ -6,13 +6,14 @@ using UnityEngine.AI;
 [RequireComponent(typeof(Rigidbody))]
 [RequireComponent(typeof(CapsuleCollider))]
 public class Enemy : Character {
+    public float maxSpeed = 5;
+    public float maxSteer = 2;
+    public GameObject[] pickups;
 
     private Player player;
     private Vector3 target;
     private int mass;
     private bool stopUpdate = false;
-    public float maxSpeed = 5;
-    public float maxSteer = 2;
     private Rigidbody rb;
     private Room room;
     private float maxFlockDistance;
@@ -20,6 +21,8 @@ public class Enemy : Character {
     private Vector3 alignment;
     private Vector3 cohesion;
     private Vector3 seperation;
+    private int pickupType;
+    private int spawnPickupDecider;
     
 	// Use this for initialization
 	void Awake () {       
@@ -52,6 +55,13 @@ public class Enemy : Character {
         if (this.currentHealth <= 0 && stopUpdate == false)
         {
             Die(this.gameObject);
+            pickupType = Random.Range(0, pickups.Length);
+            spawnPickupDecider = Random.Range(0, 3);
+            if(spawnPickupDecider == 1)
+            {
+                Instantiate(pickups[pickupType], transform.position, Quaternion.identity);
+            }
+            
             stopUpdate = true;
             room.enemyCount--;   
         }        

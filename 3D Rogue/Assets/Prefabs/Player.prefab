@@ -469,7 +469,7 @@ MonoBehaviour:
   projectile: {fileID: 54694326044805020, guid: 2bae0deb9f3ec7f459fedf48f324f6a8,
     type: 2}
   bulletSpeed: 225
-  fireRate: 0.01
+  fireRate: 0.1
 --- !u!114 &114278680122389530
 MonoBehaviour:
   m_ObjectHideFlags: 1
