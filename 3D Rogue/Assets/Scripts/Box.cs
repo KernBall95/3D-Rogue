@@ -4,10 +4,9 @@ using UnityEngine;
 
 public class Box : ObjectClass {
 
-    private bool hasItem;
-
 	void Start () {
         this.currentHealth = this.maxHealth;
+        weapon = GameObject.Find("Player(Clone)").GetComponentInChildren<Weapon>();
     }
 	
 	void Update () {
@@ -16,17 +15,11 @@ public class Box : ObjectClass {
             DestroyObject(this.gameObject);
         }
     }
-
-    void SpawnItem()
-    {
-
-    }
-
     void OnCollisionEnter(Collision other)
     {
         if (other.collider.tag == "Bullet")
         {
-            TakeDamage(this, 1);
+            TakeDamage(this, weapon.damage);
         }
     }
 }

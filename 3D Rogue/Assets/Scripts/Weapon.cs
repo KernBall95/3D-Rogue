@@ -5,9 +5,13 @@ using UnityEngine;
 public class Weapon : MonoBehaviour {
 
     public Transform projectileOrigin;
-    public Rigidbody projectile;
-    public float bulletSpeed;
+    public Rigidbody projectile;    
+
+    [Header("Weapon Stats")]
     public float fireRate = .1f;
+    public int damage = 1;
+    public float bulletSpeed;
+
     private Rigidbody rb;
     private IEnumerator coroutine;
     private bool allowFire = true;

@@ -32,4 +32,10 @@ abstract public class Item : MonoBehaviour {
         gun.fireRate += fireRateBonus;
         DestroyItem();
     }
+
+    public void IncreaseWeaponDamage(Weapon gun, int damageBonus)
+    {
+        gun.damage += damageBonus;
+        DestroyItem();
+    }
 }

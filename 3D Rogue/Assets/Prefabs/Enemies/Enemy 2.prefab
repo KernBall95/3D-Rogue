@@ -25,6 +25,7 @@ GameObject:
   - component: {fileID: 114992696890349278}
   - component: {fileID: 195489669956262664}
   - component: {fileID: 54269076644017474}
+  - component: {fileID: 114920853930539792}
   m_Layer: 13
   m_Name: Enemy 2
   m_TagString: Enemy
@@ -101,6 +102,22 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 84
   m_CollisionDetection: 2
+--- !u!114 &114920853930539792
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1673241585033780}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e16f85364d69d7a458cb1f34bdc934e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pickups:
+  - {fileID: 1403250302548406, guid: 193ad0c36269c644bb259169cafa1e5b, type: 2}
+  - {fileID: 1780968970651222, guid: 1dfdcd7a7ee07ba4780860fa8e734f93, type: 2}
+  - {fileID: 1137895368918540, guid: 28f469cee63c03840a2935e06f4a9205, type: 2}
+  - {fileID: 1558366390809620, guid: a9c5f8fe4f52e2b44b7e1a19a51aa16e, type: 2}
 --- !u!114 &114992696890349278
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -112,15 +129,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7f7bbbb918588b45bcf552c2dec504d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 20
+  maxHealth: 10
   currentHealth: 0
   maxSpeed: 3
   maxSteer: 20
-  pickups:
-  - {fileID: 1558366390809620, guid: a9c5f8fe4f52e2b44b7e1a19a51aa16e, type: 2}
-  - {fileID: 1137895368918540, guid: 28f469cee63c03840a2935e06f4a9205, type: 2}
-  - {fileID: 1780968970651222, guid: 1dfdcd7a7ee07ba4780860fa8e734f93, type: 2}
-  - {fileID: 1403250302548406, guid: 193ad0c36269c644bb259169cafa1e5b, type: 2}
+  weapon: {fileID: 0}
 --- !u!136 &136976034073636602
 CapsuleCollider:
   m_ObjectHideFlags: 1

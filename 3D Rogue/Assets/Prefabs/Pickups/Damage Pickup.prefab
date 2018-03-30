@@ -38,6 +38,7 @@ GameObject:
   - component: {fileID: 33885032992436812}
   - component: {fileID: 23331599474604798}
   - component: {fileID: 65322433399873174}
+  - component: {fileID: 114819941921366572}
   m_Layer: 0
   m_Name: Damage Pickup
   m_TagString: Untagged
@@ -161,3 +162,22 @@ Light:
   m_UseColorTemperature: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!114 &114819941921366572
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1558366390809620}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e0a6359c4387c24ca6e8b394bbdd077, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemName: 
+  rotateSpeed: 100
+  type: 3
+  pickupName: 
+  speedBonus: 1
+  healthBonus: 1
+  fireRateBonus: -0.05
+  damageBonus: 1

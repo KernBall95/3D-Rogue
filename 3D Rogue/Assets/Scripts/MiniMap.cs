@@ -2,7 +2,7 @@
 
 public class MiniMap : MonoBehaviour {
 
-    public GameObject player;
+    private GameObject player;
     private bool playerIsFound;
 
     void Start()

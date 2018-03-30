@@ -10,8 +10,9 @@ public class ExplosiveBarrel : ObjectClass {
     private bool stopUpdate = false;
       
 	void Start () {
-        this.currentHealth = this.maxHealth;       
-	}
+        this.currentHealth = this.maxHealth;
+        weapon = GameObject.Find("Player(Clone)").GetComponentInChildren<Weapon>();
+    }
 
     void Update()
     {
@@ -27,7 +28,7 @@ public class ExplosiveBarrel : ObjectClass {
     {
         if(other.collider.tag == "Bullet")
         {
-            TakeDamage(this, 1);
+            TakeDamage(this, weapon.damage);
         }
     }
 }

@@ -8,8 +8,7 @@ using UnityEngine.AI;
 public class Enemy : Character {
     public float maxSpeed = 5;
     public float maxSteer = 2;
-    public GameObject[] pickups;
-
+    
     private Player player;
     private Vector3 target;
     private int mass;
@@ -21,17 +20,17 @@ public class Enemy : Character {
     private Vector3 alignment;
     private Vector3 cohesion;
     private Vector3 seperation;
-    private int pickupType;
-    private int spawnPickupDecider;
+    private DropPickup dropPickup;
+    public Weapon weapon;
     
-	// Use this for initialization
 	void Awake () {       
         this.currentHealth = this.maxHealth;
         rb = GetComponent<Rigidbody>();
-        room = GetComponentInParent<Room>();       
-	}
+        room = GetComponentInParent<Room>();
+        dropPickup = GetComponent<DropPickup>();
+        weapon = GameObject.Find("Player(Clone)").GetComponentInChildren<Weapon>();
+    }
 	
-	// Update is called once per frame
 	void Update () {
         target = GameObject.FindGameObjectWithTag("Player").transform.position;
 
@@ -44,7 +43,6 @@ public class Enemy : Character {
             else if(gameObject.name == "Enemy 2(Clone)")
             {
                 GetComponent<NavMeshAgent>().destination = target;
-                Debug.Log("agent");
             }
         }
         else
@@ -54,13 +52,8 @@ public class Enemy : Character {
         
         if (this.currentHealth <= 0 && stopUpdate == false)
         {
+            dropPickup.DropItem();
             Die(this.gameObject);
-            pickupType = Random.Range(0, pickups.Length);
-            spawnPickupDecider = Random.Range(0, 3);
-            if(spawnPickupDecider == 1)
-            {
-                Instantiate(pickups[pickupType], transform.position, Quaternion.identity);
-            }
             
             stopUpdate = true;
             room.enemyCount--;   
@@ -70,8 +63,8 @@ public class Enemy : Character {
     void OnCollisionEnter(Collision other)
     {
         if(other.collider.tag == "Bullet")
-        {
-            TakeDamage(this, 1);
+        {          
+            TakeDamage(this, weapon.damage);
         }
     }
 

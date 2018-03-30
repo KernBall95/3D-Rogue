@@ -94,13 +94,13 @@ public class Room : MonoBehaviour
             objectSpawnDecider = Random.Range(0, 2);
             if(objectSpawnDecider == 1)
             {
-                enemyType = Random.Range(0, 2);
+                enemyType = Random.Range(0, 3);
                 if (enemyType == 0 || enemyType == 1)
                 {
                     Instantiate(enemyPrefabs[enemyType], enemySpawns[i].position, Quaternion.identity, transform);
                     enemyCount++;
                 }
-                else if(enemyType == 2)
+                else if(enemyType == 2 && roomGenerator.dungeonLevel > 3)
                 {
                     for(int j = 0; j < 5; j++)
                     {

@@ -16,6 +16,7 @@ public class RoomGenerator : MonoBehaviour
    
     [HideInInspector] public bool generationFinished;                               //Is true when the generation of a dungeon level has finished   
     [HideInInspector] public List<GameObject> spawnedObjects;                       //A list of the objects that have been spawned
+    [HideInInspector] public int dungeonLevel = 1;                                                    //The level of the dungeon
 
     //Private variables
     private GameObject currentRoom;                                                 //The most recent spawned room
@@ -28,7 +29,6 @@ public class RoomGenerator : MonoBehaviour
     private Transform northRay, southRay, eastRay, westRay;                         //Checks if a room is already where the generator wants to spawn a room
     private Transform northDoorSpawn, eastDoorSpawn, southDoorSpawn, westDoorSpawn; //Door spawn points
     private GameObject playerClone;
-    private int dungeonLevel = 1;                                                    //The level of the dungeon
     private Text dungeonLevelText;
 
     void Start()

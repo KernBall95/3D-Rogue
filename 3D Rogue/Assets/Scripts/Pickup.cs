@@ -7,6 +7,7 @@ public class Pickup : Item {
     public int speedBonus = 1;
     public int healthBonus = 1;
     public float fireRateBonus = -0.05f;
+    public int damageBonus = 1;
 
     void Update()
     {
@@ -29,6 +30,9 @@ public class Pickup : Item {
                     break;
                 case PickupType.FireRate:
                     IncreaseFireRate(gun, fireRateBonus);
+                    break;
+                case PickupType.WeaponDamage:
+                    IncreaseWeaponDamage(gun, damageBonus);
                     break;
                 default:
                     Debug.LogError("Invalid pickup type!");

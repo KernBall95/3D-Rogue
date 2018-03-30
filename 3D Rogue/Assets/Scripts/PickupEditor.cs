@@ -24,6 +24,9 @@ public class PickupEditor : Editor {
             case PickupType.FireRate:
                 pickup.fireRateBonus = EditorGUILayout.FloatField("Fire Rate Bonus", pickup.fireRateBonus);
                 break;
+            case PickupType.WeaponDamage:
+                pickup.damageBonus = EditorGUILayout.IntField("Damage Bonus", pickup.damageBonus);
+                break;
             default:
                 Debug.LogError("Invalid pickup type!");
                 break;

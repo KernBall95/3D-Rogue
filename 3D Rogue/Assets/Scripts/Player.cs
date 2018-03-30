@@ -20,9 +20,7 @@ public class Player : Character {
     private CapsuleCollider capsule;
     private bool isGrounded, jump, isJumping;
     private float groundCheckDistance = 0.1f;
-    private float stickToGroundDistance = 0.05f;
     private Vector3 groundContactNormal;
-    private float currentTargetSpeed = 8f;
     private KeyCode runKey = KeyCode.LeftShift;
     private float runMulitplier = 1.5f;
     private int jumpForce = 1300;
@@ -52,7 +50,6 @@ public class Player : Character {
         {
             isJumping = true;
             rb.drag = 0f;
-            Debug.Log("Jumping");
         }
 
         if(this.currentHealth <= 0)
