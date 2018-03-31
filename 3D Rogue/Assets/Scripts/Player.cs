@@ -8,11 +8,13 @@ using UnityEngine.UI;
 [RequireComponent(typeof(CapsuleCollider))]
 public class Player : Character {
 
-    [Header("Speed Settings")]
+    [Header("Movment Settings")]
     public float forwardSpeed = 8.0f;
     public float backwardSpeed = 4.0f;
-    public float strafeSpeed = 6.0f; 
-    
+    public float strafeSpeed = 6.0f;
+    public float runMulitplier = 1.5f;
+    public int jumpForce = 1300;
+
     [Header("Player Camera")]
     public Camera cam;
        
@@ -22,25 +24,41 @@ public class Player : Character {
     private float groundCheckDistance = 0.1f;
     private Vector3 groundContactNormal;
     private KeyCode runKey = KeyCode.LeftShift;
-    private float runMulitplier = 1.5f;
-    private int jumpForce = 1300;
+    
     private Slider healthBar;
+    private Slider maxHealthBar;
+    private Slider movementSpeedBar;
+
     private LookTowardMouse mouseLook = new LookTowardMouse();
+
+    private SwitchScene sceneSwitcher;
 
     void Start () {
         rb = GetComponent<Rigidbody>();
         capsule = GetComponent<CapsuleCollider>();
         mouseLook.Init(transform, cam.transform);
-        this.currentHealth = this.maxHealth;
+        currentHealth = maxHealth;
+
         healthBar = GameObject.Find("Health Bar").GetComponent<Slider>();
-        healthBar.value = this.currentHealth;
+        maxHealthBar = GameObject.Find("Max Health Bar").GetComponent<Slider>();
+        movementSpeedBar = GameObject.Find("Movement Speed Bar").GetComponent<Slider>();
+
+        healthBar.value = currentHealth;
+        maxHealthBar.value = maxHealth;
+        movementSpeedBar.value = forwardSpeed;
+
+        sceneSwitcher = GetComponent<SwitchScene>();
 	}
 	
 	void Update () {
         CheckGrounded();
         RotatePlayer();
         Move();
+
         healthBar.value = currentHealth;
+        maxHealthBar.value = maxHealth;
+        movementSpeedBar.value = forwardSpeed;
+
         if (isGrounded)
         {
             isJumping = false;
@@ -55,6 +73,7 @@ public class Player : Character {
         if(this.currentHealth <= 0)
         {
             Die(this.gameObject);
+            sceneSwitcher.SwitchToMenu();
         }
     }
   

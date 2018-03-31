@@ -4,7 +4,6 @@ using UnityEngine;
 
 abstract public class Character : MonoBehaviour {
 
-    [Header("Character Health")]
     public int maxHealth = 10;
     public int currentHealth;
 

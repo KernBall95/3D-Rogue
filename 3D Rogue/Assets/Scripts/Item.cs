@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-abstract public class Item : MonoBehaviour {
+public class Item : MonoBehaviour {
     public string itemName;
     public float rotateSpeed = 100f;
 
@@ -16,26 +16,54 @@ abstract public class Item : MonoBehaviour {
     
     public void AddHealth(Player player, int healthBonus)
     {
-        player.currentHealth += healthBonus;
-        DestroyItem();
+        if(player.currentHealth < player.maxHealth)
+        {
+            player.currentHealth += healthBonus;
+            DestroyItem();
+        }
+        else
+        {
+            Debug.Log("Already at max health!");
+        }
     }
 
     public void AddSpeed(Player player, float speedBonus)
     {
-        player.forwardSpeed += speedBonus;
-        player.backwardSpeed += speedBonus;
-        player.strafeSpeed += speedBonus;
-        DestroyItem();
+        if (player.forwardSpeed < 15)
+        {
+            player.forwardSpeed += speedBonus;
+            player.backwardSpeed += speedBonus;
+            player.strafeSpeed += speedBonus;
+            DestroyItem();
+        }
+        else
+        {
+            Debug.Log("Already at max speed!");
+        }
     }
     public void IncreaseFireRate(Weapon gun, float fireRateBonus)
     {
-        gun.fireRate += fireRateBonus;
-        DestroyItem();
+        if(gun.fireRate > 0.1f)
+        {
+            gun.fireRate += fireRateBonus;
+            DestroyItem();
+        }
+        else
+        {
+            Debug.Log("Already at fire rate!");
+        }
     }
 
     public void IncreaseWeaponDamage(Weapon gun, int damageBonus)
     {
-        gun.damage += damageBonus;
-        DestroyItem();
+        if (gun.damage < 5)
+        {
+            gun.damage += damageBonus;
+            DestroyItem();
+        }
+        else
+        {
+            Debug.Log("Already at weapon damage!");
+        }
     }
 }

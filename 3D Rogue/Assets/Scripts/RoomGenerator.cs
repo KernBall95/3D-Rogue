@@ -146,7 +146,7 @@ public class RoomGenerator : MonoBehaviour
         }
         else if(Physics.Raycast(forwardRay, out hit, 60f) && Physics.Raycast(downwardRay, out otherHit, 10f))
         {
-            Debug.Log("Already a room and corridor.");
+            return;
         }
         else
         {
