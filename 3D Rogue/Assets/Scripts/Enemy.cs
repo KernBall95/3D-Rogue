@@ -21,7 +21,7 @@ public class Enemy : Character {
     private Vector3 cohesion;
     private Vector3 seperation;
     private DropPickup dropPickup;
-    public Weapon weapon;
+    [HideInInspector]public Weapon weapon;
     
 	void Awake () {       
         this.currentHealth = this.maxHealth;
@@ -36,7 +36,7 @@ public class Enemy : Character {
 
         if(room.playerInRoom == true)
         {
-            if(gameObject.name == "Enemy(Clone)" || gameObject.name == "Enemy 3(Clone)")
+            if(gameObject.name == "Enemy(Clone)" || gameObject.name == "Skull Enemy(Clone)")
             {
                 Seek(transform.position, target);
             }

@@ -8,35 +8,38 @@ public class Room : MonoBehaviour
     public GameObject doorwayBlocker;
     public CorridorChecker[] doorSpawns;
     public bool playerInRoom;
-    public bool hasEnemies;
+    //public bool hasEnemies;
     public GameObject[] objectPrefabs;
     public Transform[] objectSpawns;
     public Transform[] enemySpawns;
     public GameObject[] enemyPrefabs;
-    [HideInInspector] public int enemyCount = 0;
+    public int enemyCount = 0;
 
     private GameObject roomGenObject;
     private int objectSpawnDecider;
     private int objectTypeDecider;
     private RoomGenerator roomGenerator;
     public List<Door> doors;
-    private bool doorsAreClosed = false;
+    public bool doorsAreClosed = false;
     private int enemyType;
+    private bool doorsAreSpawned = false;
     
     void Start()
     {
         roomGenObject = GameObject.Find("Room Generator");
         roomGenerator = roomGenObject.GetComponent<RoomGenerator>();
-        IEnumerator coroutine = WaitForGen();
-        StartCoroutine(coroutine);
+
+        IEnumerator genCoroutine = WaitForGen();
+        StartCoroutine(genCoroutine);
+
         SpawnObjects();
         SpawnEnemies();
-        playerInRoom = false;
     }
 
     void Update()
     {
-        DetectEnemies();     
+        if(doorsAreSpawned == true)
+            DoorControl();     
     }
 
     //Check if player enters room
@@ -79,12 +82,14 @@ public class Room : MonoBehaviour
                 doorSpawns[i].spawnPoint = new Vector3(doorSpawns[i].spawnPoint.x, doorSpawns[i].spawnPoint.y - 5.2f, doorSpawns[i].spawnPoint.z);
                 Door door = Instantiate(doorPrefab, doorSpawns[i].spawnPoint, doorSpawns[i].gameObject.transform.rotation, transform).GetComponent<Door>();
                 doors.Add(door);
+
             }
             else //Instantiate a doorway blocker if there is no corridor
             {
                 Instantiate(doorwayBlocker, doorSpawns[i].spawnPoint, doorSpawns[i].gameObject.transform.rotation, transform);
             }
         }
+        doorsAreSpawned = true;
     }
 
     void SpawnEnemies()
@@ -100,11 +105,11 @@ public class Room : MonoBehaviour
                     Instantiate(enemyPrefabs[enemyType], enemySpawns[i].position, Quaternion.identity, transform);
                     enemyCount++;
                 }
-                else if(enemyType == 2 && roomGenerator.dungeonLevel > 3)
+                else if(enemyType == 2 && roomGenerator.dungeonLevel > 0)
                 {
-                    for(int j = 0; j < 5; j++)
+                    for(int j = 0; j < 4; j++)
                     {
-                        Instantiate(enemyPrefabs[enemyType], enemySpawns[i].position, Quaternion.identity, transform);
+                        Instantiate(enemyPrefabs[enemyType], enemySpawns[j].position, Quaternion.identity, transform);
                         enemyCount++;
                     }
                 }            
@@ -112,13 +117,13 @@ public class Room : MonoBehaviour
         }
     }
 
-    void DetectEnemies()
+    void DoorControl()
     {
         if (enemyCount > 0 && doorsAreClosed == false && playerInRoom == true)
         {
             for (int i = 0; i < doors.Count; i++)
             {
-                doors[i].CloseDoor();
+                doors[i].CloseDoor();               
             }
             doorsAreClosed = true;
         }
@@ -141,6 +146,15 @@ public class Room : MonoBehaviour
         }
         yield return new WaitForSeconds(0.5f);
         SpawnDoors();
+    }
+
+    private IEnumerator WaitForEnemySpawnCondition()
+    {
+        while(roomGenerator.spawnEnemies == false)
+        {
+            yield return null;
+        }
+        SpawnEnemies();
     }
 
 }

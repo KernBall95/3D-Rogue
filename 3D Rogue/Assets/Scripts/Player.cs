@@ -33,7 +33,7 @@ public class Player : Character {
 
     private SwitchScene sceneSwitcher;
 
-    void Start () {
+    void Awake () {
         rb = GetComponent<Rigidbody>();
         capsule = GetComponent<CapsuleCollider>();
         mouseLook.Init(transform, cam.transform);

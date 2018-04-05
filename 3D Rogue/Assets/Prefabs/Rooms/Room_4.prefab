@@ -1497,7 +1497,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: d28f49e56174ac0489d200c0225f404c, type: 2}
+  - {fileID: 2100000, guid: f6fce69521180f74aa47bb65945b0b1f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2491,7 +2491,7 @@ Light:
   serializedVersion: 8
   m_Type: 2
   m_Color: {r: 0.5441177, g: 0.5441177, b: 0.5441177, a: 1}
-  m_Intensity: 20
+  m_Intensity: 15
   m_Range: 47.8
   m_SpotAngle: 30
   m_CookieSize: 10
@@ -2591,9 +2591,8 @@ MonoBehaviour:
   - {fileID: 114647791226730088}
   - {fileID: 114244725377305830}
   playerInRoom: 0
-  hasEnemies: 0
   objectPrefabs:
-  - {fileID: 1989556077764900, guid: b5f32c62c7924e148b5d1023f402c809, type: 2}
+  - {fileID: 1697348598001452, guid: 600a6cd1eb5dbf3419a99efffe9073a9, type: 2}
   - {fileID: 1255867507407184, guid: d266fb4c51ea3f747ae2f65062ddb421, type: 2}
   objectSpawns:
   - {fileID: 4237113382240102}
@@ -2609,9 +2608,10 @@ MonoBehaviour:
   enemyPrefabs:
   - {fileID: 1849509526571464, guid: 5b609a29491191e4b828a68baa56bbe3, type: 2}
   - {fileID: 1673241585033780, guid: 894f3317db1ee984ab71f70aad8bb9d6, type: 2}
-  - {fileID: 1582721306922100, guid: 1e8f572e071f5bf4b9a58534f362911a, type: 2}
+  - {fileID: 1104506520913516, guid: a3e63ea5f7be90446b702a6cf30d5848, type: 2}
   enemyCount: 0
   doors: []
+  doorsAreClosed: 0
 --- !u!114 &114647791226730088
 MonoBehaviour:
   m_ObjectHideFlags: 1

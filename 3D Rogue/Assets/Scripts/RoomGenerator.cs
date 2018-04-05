@@ -16,7 +16,8 @@ public class RoomGenerator : MonoBehaviour
    
     [HideInInspector] public bool generationFinished;                               //Is true when the generation of a dungeon level has finished   
     [HideInInspector] public List<GameObject> spawnedObjects;                       //A list of the objects that have been spawned
-    [HideInInspector] public int dungeonLevel = 1;                                                    //The level of the dungeon
+    [HideInInspector] public int dungeonLevel = 1;                                  //The level of the dungeon
+    [HideInInspector] public bool spawnEnemies;
 
     //Private variables
     private GameObject currentRoom;                                                 //The most recent spawned room
@@ -34,6 +35,7 @@ public class RoomGenerator : MonoBehaviour
     void Start()
     {
         generationFinished = false;
+        spawnEnemies = false;
 
         //Main generation loop
         IEnumerator coroutine = GenerationLoop();
@@ -58,6 +60,8 @@ public class RoomGenerator : MonoBehaviour
         roomNumber = Random.Range(0, 5);
         currentRoom = Instantiate(rooms[roomNumber], transform.position, Quaternion.identity);
         spawnedObjects.Add(currentRoom);
+
+        spawnEnemies = true;
         
         FindRaysAndDoorSpawns();
 

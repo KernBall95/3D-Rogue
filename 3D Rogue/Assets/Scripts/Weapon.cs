@@ -6,7 +6,9 @@ using UnityEngine.UI;
 public class Weapon : MonoBehaviour {
 
     public Transform projectileOrigin;
-    public Rigidbody projectile;    
+    public Rigidbody projectile;
+
+    public Camera cam;
 
     [Header("Weapon Stats")]
     public float fireRate;
@@ -19,6 +21,9 @@ public class Weapon : MonoBehaviour {
 
     private Slider fireRateBar;
     private Slider weaponDamageBar;
+
+    private float x = Screen.width / 2;
+    private float y = Screen.height / 2;
 
     void Start()
     {
@@ -41,8 +46,16 @@ public class Weapon : MonoBehaviour {
     {
         allowFire = false;
         Rigidbody bulletClone = Instantiate(projectile, projectileOrigin.position, Quaternion.identity);
-        bulletClone.velocity = transform.forward * bulletSpeed;
-        yield return new WaitForSeconds(fireRate);
-        allowFire = true;
+
+        Ray ray = cam.ScreenPointToRay(new Vector3(x, y, 0));
+        RaycastHit hit;
+
+        if (Physics.Raycast(ray, out hit))
+        {
+            Vector3 bulletVector = (hit.point - projectileOrigin.position).normalized;
+            bulletClone.velocity = bulletVector * bulletSpeed;
+            yield return new WaitForSeconds(fireRate);
+            allowFire = true;
+        }
     }
 }
