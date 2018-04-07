@@ -4,7 +4,6 @@ using UnityEngine;
 using UnityEngine.AI;
 
 [RequireComponent(typeof(Rigidbody))]
-[RequireComponent(typeof(CapsuleCollider))]
 public class Enemy : Character {
     public float maxSpeed = 5;
     public float maxSteer = 2;
@@ -40,7 +39,7 @@ public class Enemy : Character {
             {
                 Seek(transform.position, target);
             }
-            else if(gameObject.name == "Enemy 2(Clone)")
+            else if(gameObject.name == "Skeleton(Clone)")
             {
                 GetComponent<NavMeshAgent>().destination = target;
             }
