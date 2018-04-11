@@ -35,7 +35,7 @@ public class Enemy : Character {
 
         if(room.playerInRoom == true)
         {
-            if(gameObject.name == "Enemy(Clone)" || gameObject.name == "Skull Enemy(Clone)")
+            if(gameObject.name == "Zombie(Clone)" || gameObject.name == "Skull Enemy(Clone)")
             {
                 Seek(transform.position, target);
             }
