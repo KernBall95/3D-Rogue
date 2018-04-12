@@ -1,9 +1,11 @@
 ﻿using UnityEngine;
+#if UNITY_EDITOR
 using UnityEditor;
+
 
 [CustomEditor(typeof(Pickup))]
 public class PickupEditor : Editor {
-    
+
     public override void OnInspectorGUI()
     {
         Pickup pickup = (Pickup)target;
@@ -32,7 +34,9 @@ public class PickupEditor : Editor {
                 break;
         }
     }
+
 }
+#endif
 
 public enum PickupType
 {

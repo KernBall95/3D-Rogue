@@ -9,7 +9,7 @@ public class LookAtPlayer : MonoBehaviour {
     private GameObject player;
 
 	void Start () {
-        player = GameObject.Find("Player(Clone)");
+        player = GameObject.Find("Player");
 	}
 	
 	void Update () {

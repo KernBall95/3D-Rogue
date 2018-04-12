@@ -20,18 +20,18 @@ public class Enemy : Character {
     private Vector3 cohesion;
     private Vector3 seperation;
     private DropPickup dropPickup;
-    [HideInInspector]public Weapon weapon;
+    private Weapon weapon;
     
 	void Awake () {       
         this.currentHealth = this.maxHealth;
         rb = GetComponent<Rigidbody>();
         room = GetComponentInParent<Room>();
         dropPickup = GetComponent<DropPickup>();
-        weapon = GameObject.Find("Player(Clone)").GetComponentInChildren<Weapon>();
+        weapon = GameObject.Find("Player").GetComponentInChildren<Weapon>();
     }
 	
 	void Update () {
-        target = GameObject.FindGameObjectWithTag("Player").transform.position;
+        target = GameObject.Find("Player").transform.position;
 
         if(room.playerInRoom == true)
         {
@@ -64,6 +64,14 @@ public class Enemy : Character {
         if(other.collider.tag == "Bullet")
         {          
             TakeDamage(this, weapon.damage);
+        }
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Spikes")
+        {
+            Die(this.gameObject);
         }
     }
 

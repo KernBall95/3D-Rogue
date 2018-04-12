@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ShowCursor : MonoBehaviour {
 
-	void Awake()
+	void Start()
     {
         Cursor.visible = true;
     }

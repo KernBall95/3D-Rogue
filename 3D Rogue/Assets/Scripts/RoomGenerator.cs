@@ -7,6 +7,7 @@ public class RoomGenerator : MonoBehaviour
 {
     //Public variables
     public GameObject[] rooms;                                                      //Array of different rooms that can be spawned
+    public GameObject startingRoom;
     public GameObject corridor;                                                     //Prefab of the corridor. May become array of multiple corridor types   
     public GameObject endPortal;                                                    //Portal which when touched by player will generate next level of dungeon
     public GameObject player;                                                       //The player
@@ -29,7 +30,7 @@ public class RoomGenerator : MonoBehaviour
     private bool northRayHit, EastRayHit, southRayHit, westRayHit;                  //Ray hits
     private Transform northRay, southRay, eastRay, westRay;                         //Checks if a room is already where the generator wants to spawn a room
     private Transform northDoorSpawn, eastDoorSpawn, southDoorSpawn, westDoorSpawn; //Door spawn points
-    private GameObject playerClone;
+
     private Text dungeonLevelText;
 
     void Start()
@@ -38,10 +39,8 @@ public class RoomGenerator : MonoBehaviour
         spawnEnemies = false;
 
         //Main generation loop
-        IEnumerator coroutine = GenerationLoop();
-        StartCoroutine(coroutine);
-        
-        playerClone = Instantiate(player, new Vector3(0, 1.8f, -20), Quaternion.identity);
+        IEnumerator loopCoroutine = GenerationLoop();
+        StartCoroutine(loopCoroutine);
     }
 
     IEnumerator GenerationLoop()
@@ -57,8 +56,7 @@ public class RoomGenerator : MonoBehaviour
         //Instantiate room at starting point
         roomSpawnPos = new Vector3(genX, genY, genZ);
         transform.position = roomSpawnPos;
-        roomNumber = Random.Range(0, 5);
-        currentRoom = Instantiate(rooms[roomNumber], transform.position, Quaternion.identity);
+        currentRoom = Instantiate(startingRoom, transform.position, Quaternion.identity);
         spawnedObjects.Add(currentRoom);
 
         spawnEnemies = true;
@@ -216,6 +214,6 @@ public class RoomGenerator : MonoBehaviour
         generationFinished = false;
         IEnumerator coroutine = GenerationLoop();
         StartCoroutine(coroutine);
-        playerClone.transform.position = new Vector3(0, 1.8f, -20);
+        player.transform.position = new Vector3(0, 1.8f, -20);
     }
 }

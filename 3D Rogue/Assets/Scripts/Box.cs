@@ -6,7 +6,7 @@ public class Box : ObjectClass {
 
 	void Start () {
         this.currentHealth = this.maxHealth;
-        weapon = GameObject.Find("Player(Clone)").GetComponentInChildren<Weapon>();
+        weapon = GameObject.Find("Player").GetComponentInChildren<Weapon>();
     }
 	
 	void Update () {

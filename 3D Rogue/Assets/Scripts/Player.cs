@@ -112,6 +112,15 @@ public class Player : Character {
         }
     }
 
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Spikes")
+        {
+            Die(this.gameObject);
+            sceneSwitcher.SwitchToMenu();
+        }
+    }
+
     void Move()
     {
         

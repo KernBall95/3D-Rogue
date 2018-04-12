@@ -1,23 +1,18 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using System.Collections;
+using UnityEngine;
 
 public class MiniMap : MonoBehaviour {
 
     private GameObject player;
-    private bool playerIsFound;
-
-    void Start()
-    {
-        player = GameObject.Find("Player(Clone)");
-        playerIsFound = false;
-    }
 	
 	void Update () {
-        if(playerIsFound == false)
-        {
-            player = GameObject.Find("Player(Clone)");
-            playerIsFound = true;
-        }
-        
+
+       if(player == null)
+       {
+           player = GameObject.Find("Player");
+       }
+
         transform.position = new Vector3(player.transform.position.x, transform.position.y, player.transform.position.z);
 	}
 }

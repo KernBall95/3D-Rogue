@@ -8,7 +8,6 @@ public class Room : MonoBehaviour
     public GameObject doorwayBlocker;
     public CorridorChecker[] doorSpawns;
     public bool playerInRoom;
-    //public bool hasEnemies;
     public GameObject[] objectPrefabs;
     public Transform[] objectSpawns;
     public Transform[] enemySpawns;
@@ -97,7 +96,7 @@ public class Room : MonoBehaviour
         for(int i = 0; i < enemySpawns.Length; i++)
         {
             objectSpawnDecider = Random.Range(0, 2);
-            if(objectSpawnDecider == 1)
+            if(objectSpawnDecider == 1 && this.name != "Starting Room(Clone)")
             {
                 enemyType = Random.Range(0, 3);
                 if (enemyType == 0 || enemyType == 1)
