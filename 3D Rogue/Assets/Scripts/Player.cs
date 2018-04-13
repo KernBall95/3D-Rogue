@@ -50,7 +50,7 @@ public class Player : Character {
         sceneSwitcher = GetComponent<SwitchScene>();
 	}
 	
-	void Update () {
+	void FixedUpdate () {
         CheckGrounded();
         RotatePlayer();
         Move();
@@ -146,7 +146,7 @@ public class Player : Character {
             Vector3 desiredMove = cam.transform.forward;
             desiredMove = Vector3.ProjectOnPlane(desiredMove, groundContactNormal).normalized;
             desiredMove.x = desiredMove.x * forwardSpeed;
-            desiredMove.y = desiredMove.y * forwardSpeed;
+            //desiredMove.y = desiredMove.y * forwardSpeed;
             desiredMove.z = desiredMove.z * forwardSpeed;
             rb.AddForce(desiredMove, ForceMode.Impulse);
         }

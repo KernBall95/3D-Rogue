@@ -214,6 +214,6 @@ public class RoomGenerator : MonoBehaviour
         generationFinished = false;
         IEnumerator coroutine = GenerationLoop();
         StartCoroutine(coroutine);
-        player.transform.position = new Vector3(0, 1.8f, -20);
+        player.transform.position = new Vector3(0f, 1.8f, 0f);
     }
 }
