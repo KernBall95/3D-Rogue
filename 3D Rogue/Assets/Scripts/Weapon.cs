@@ -25,6 +25,9 @@ public class Weapon : MonoBehaviour {
     private float x = Screen.width / 2;
     private float y = Screen.height / 2;
 
+    public Animator anim;
+    public AudioSource shootingAudio;
+
     void Start()
     {
         fireRateBar = GameObject.Find("Fire Rate Bar").GetComponent<Slider>();
@@ -46,7 +49,8 @@ public class Weapon : MonoBehaviour {
     {
         allowFire = false;
         Rigidbody bulletClone = Instantiate(projectile, projectileOrigin.position, Quaternion.identity);
-
+        anim.SetTrigger("Fire");
+        shootingAudio.Play();
         Ray ray = cam.ScreenPointToRay(new Vector3(x, y, 0));
         RaycastHit hit;
 
@@ -54,6 +58,7 @@ public class Weapon : MonoBehaviour {
         {
             Vector3 bulletVector = (hit.point - projectileOrigin.position).normalized;
             bulletClone.velocity = bulletVector * bulletSpeed;
+            
             yield return new WaitForSeconds(fireRate);
             allowFire = true;
         }

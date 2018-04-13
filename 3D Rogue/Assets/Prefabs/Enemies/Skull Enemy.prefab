@@ -113,11 +113,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7f7bbbb918588b45bcf552c2dec504d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 4
+  maxHealth: 3
   currentHealth: 0
   maxSpeed: 8
   maxSteer: 2.2
-  weapon: {fileID: 0}
 --- !u!114 &114852364640810178
 MonoBehaviour:
   m_ObjectHideFlags: 1

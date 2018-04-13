@@ -9,10 +9,10 @@ using UnityEngine.UI;
 public class Player : Character {
 
     [Header("Movment Settings")]
-    public float forwardSpeed = 8.0f;
-    public float backwardSpeed = 4.0f;
-    public float strafeSpeed = 6.0f;
-    public float runMulitplier = 1.5f;
+    public float forwardSpeed;
+    public float backwardSpeed;
+    public float strafeSpeed;
+    public float runMulitplier;
     public int jumpForce = 1300;
 
     [Header("Player Camera")]
@@ -146,7 +146,6 @@ public class Player : Character {
             Vector3 desiredMove = cam.transform.forward;
             desiredMove = Vector3.ProjectOnPlane(desiredMove, groundContactNormal).normalized;
             desiredMove.x = desiredMove.x * forwardSpeed;
-            //desiredMove.y = desiredMove.y * forwardSpeed;
             desiredMove.z = desiredMove.z * forwardSpeed;
             rb.AddForce(desiredMove, ForceMode.Impulse);
         }
@@ -155,7 +154,6 @@ public class Player : Character {
             Vector3 desiredMove = cam.transform.forward;
             desiredMove = Vector3.ProjectOnPlane(desiredMove, groundContactNormal).normalized;
             desiredMove.x = desiredMove.x * -backwardSpeed;
-            desiredMove.y = desiredMove.y * -backwardSpeed;
             desiredMove.z = desiredMove.z * -backwardSpeed;
             rb.AddForce(desiredMove, ForceMode.Impulse);
 
@@ -165,7 +163,6 @@ public class Player : Character {
             Vector3 desiredMove = cam.transform.right;
             desiredMove = Vector3.ProjectOnPlane(desiredMove, groundContactNormal).normalized;
             desiredMove.x = desiredMove.x * -strafeSpeed;
-            desiredMove.y = desiredMove.y * -strafeSpeed;
             desiredMove.z = desiredMove.z * -strafeSpeed;
             
             rb.AddForce(desiredMove, ForceMode.Impulse);
@@ -175,7 +172,6 @@ public class Player : Character {
             Vector3 desiredMove = cam.transform.right;
             desiredMove = Vector3.ProjectOnPlane(desiredMove, groundContactNormal).normalized;
             desiredMove.x = desiredMove.x * strafeSpeed;
-            desiredMove.y = desiredMove.y * strafeSpeed;
             desiredMove.z = desiredMove.z * strafeSpeed;
             rb.AddForce(desiredMove, ForceMode.Impulse);
         }

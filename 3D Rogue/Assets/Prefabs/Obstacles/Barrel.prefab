@@ -148,6 +148,8 @@ MonoBehaviour:
   weapon: {fileID: 0}
   explosion: {fileID: 198433425613629352, guid: d47207e3372180c44aaa4f7ff4beacc8,
     type: 2}
+  explosionAudioSource: {fileID: 1432757368340658, guid: a9cd505e9e17a744a98c50ac3fdeb606,
+    type: 2}
 --- !u!208 &208314611671854570
 NavMeshObstacle:
   m_ObjectHideFlags: 1

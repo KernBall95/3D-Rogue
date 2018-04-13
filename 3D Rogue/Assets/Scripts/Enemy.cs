@@ -97,7 +97,7 @@ public class Enemy : Character {
 
     void Wander()
     {
-        Vector3 displacement = new Vector3(rb.velocity.x + Random.Range(-25, 25), 1f, rb.velocity.z + Random.Range(-25, 25));
+        Vector3 displacement = new Vector3(rb.velocity.x + Random.Range(-25, 25), 0f, rb.velocity.z + Random.Range(-25, 25));
         Vector3 desiredVelocity = rb.velocity + displacement;
         desiredVelocity = desiredVelocity.normalized;
         desiredVelocity *= maxSpeed;

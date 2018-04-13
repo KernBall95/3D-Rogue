@@ -6,7 +6,7 @@ abstract public class ObjectClass : MonoBehaviour {
 
     public int maxHealth;
     public int currentHealth;
-    public Weapon weapon;
+    [HideInInspector]public Weapon weapon;
 
     private DropPickup dropPickup;
 
