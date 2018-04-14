@@ -17,7 +17,6 @@ using UnityStandardAssets.CrossPlatformInput;
 
         private Quaternion m_CharacterTargetRot;
         private Quaternion m_CameraTargetRot;
-        private bool m_cursorIsLocked = true;
 
         public void Init(Transform character, Transform camera)
         {
@@ -50,47 +49,7 @@ using UnityStandardAssets.CrossPlatformInput;
                 camera.localRotation = m_CameraTargetRot;
             }
 
-            UpdateCursorLock();
-        }
-
-        public void SetCursorLock(bool value)
-        {
-            lockCursor = value;
-            if (!lockCursor)
-            {//we force unlock the cursor if the user disable the cursor locking helper
-                Cursor.lockState = CursorLockMode.None;
-                Cursor.visible = true;
-            }
-        }
-
-        public void UpdateCursorLock()
-        {
-            //if the user set "lockCursor" we check & properly lock the cursos
-            if (lockCursor)
-                InternalLockUpdate();
-        }
-
-        private void InternalLockUpdate()
-        {
-            if (Input.GetKeyUp(KeyCode.Escape))
-            {
-                m_cursorIsLocked = false;
-            }
-            else if (Input.GetMouseButtonUp(0))
-            {
-                m_cursorIsLocked = true;
-            }
-
-            if (m_cursorIsLocked)
-            {
-                Cursor.lockState = CursorLockMode.Locked;
-                Cursor.visible = false;
-            }
-            else if (!m_cursorIsLocked)
-            {
-                Cursor.lockState = CursorLockMode.None;
-                Cursor.visible = true;
-            }
+        Cursor.lockState = CursorLockMode.Confined;
         }
 
         Quaternion ClampRotationAroundXAxis(Quaternion q)
