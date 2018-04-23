@@ -4,6 +4,7 @@ public class Pickup : Item {
     public PickupType type;
     public string pickupName;
 
+    [Header("Pickup Stats")]
     public int speedBonus = 1;
     public int healthBonus = 1;
     public float fireRateBonus = -0.05f;

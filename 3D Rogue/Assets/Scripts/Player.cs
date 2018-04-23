@@ -50,7 +50,7 @@ public class Player : Character {
         sceneSwitcher = GetComponent<SwitchScene>();
 	}
 	
-	void FixedUpdate () {
+	void Update () {
         CheckGrounded();
         RotatePlayer();
         Move();
@@ -123,24 +123,16 @@ public class Player : Character {
 
     void Move()
     {
-        
-        if (Input.GetKeyDown(runKey))
-        {
-            forwardSpeed *= runMulitplier;
-            backwardSpeed *= runMulitplier;
-            strafeSpeed *= runMulitplier;
-        }
-        else if (Input.GetKeyUp(runKey))
-        {
-            forwardSpeed /= runMulitplier;
-            backwardSpeed /= runMulitplier;
-            strafeSpeed /= runMulitplier;
-        }
+        CheckRunning();
 
-        if(Input.GetButtonDown("Jump"))
+        if (Input.GetButtonDown("Jump"))
         {
+            rb.velocity /= 1.6f;
             rb.AddForce(0, jumpForce, 0);
+            
         }
+       
+
         if (Input.GetButton("Forward") && isJumping == false)
         {
             Vector3 desiredMove = cam.transform.forward;
@@ -174,6 +166,23 @@ public class Player : Character {
             desiredMove.x = desiredMove.x * strafeSpeed;
             desiredMove.z = desiredMove.z * strafeSpeed;
             rb.AddForce(desiredMove, ForceMode.Impulse);
+        }
+    }
+
+    void CheckRunning()
+    {
+        if (Input.GetKeyDown(runKey))
+        {
+            forwardSpeed *= runMulitplier;
+            backwardSpeed *= runMulitplier;
+            strafeSpeed *= runMulitplier;
+        }
+
+        if (Input.GetKeyUp(runKey))
+        {
+            forwardSpeed /= runMulitplier;
+            backwardSpeed /= runMulitplier;
+            strafeSpeed /= runMulitplier;
         }
     }
 }

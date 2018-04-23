@@ -415,7 +415,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0.5}
   m_SizeDelta: {x: 2100, y: 1500}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &102076645
@@ -1330,7 +1330,7 @@ MonoBehaviour:
   backwardSpeed: 6
   strafeSpeed: 10
   runMulitplier: 1.5
-  jumpForce: 1300
+  jumpForce: 1900
   cam: {fileID: 2059045262}
 --- !u!54 &624414051
 Rigidbody:

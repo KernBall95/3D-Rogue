@@ -30,8 +30,6 @@ public class ExplosiveBarrel : ObjectClass {
     void OnCollisionEnter(Collision other)
     {
         if(other.collider.tag == "Bullet")
-        {
-            TakeDamage(this, weapon.damage);
-        }
+            TakeDamage(this, weapon.damage);        
     }
 }

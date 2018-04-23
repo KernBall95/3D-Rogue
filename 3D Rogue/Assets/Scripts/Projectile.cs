@@ -14,9 +14,8 @@ public class Projectile : MonoBehaviour {
         timeSinceSpawn += Time.deltaTime;
 
         if(timeSinceSpawn >= timeUntilDeath)
-        {
             Destroy(this.gameObject);
-        }
+        
     }
 
     void OnCollisionEnter(Collision other)

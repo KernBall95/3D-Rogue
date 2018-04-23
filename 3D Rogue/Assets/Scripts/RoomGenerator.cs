@@ -140,6 +140,7 @@ public class RoomGenerator : MonoBehaviour
     {
         RaycastHit hit;
         RaycastHit otherHit;
+
         if (Physics.Raycast(forwardRay, out hit, 60f) && !Physics.Raycast(downwardRay, out otherHit, 10f))
         {
             GameObject newCorridor = Instantiate(corridor, corridorSpawn, currentCorridorRotation);
@@ -147,9 +148,8 @@ public class RoomGenerator : MonoBehaviour
             spawnedObjects.Add(newCorridor);
         }
         else if(Physics.Raycast(forwardRay, out hit, 60f) && Physics.Raycast(downwardRay, out otherHit, 10f))
-        {
             return;
-        }
+        
         else
         {
             switch (nextSpawnDirection)
@@ -203,14 +203,13 @@ public class RoomGenerator : MonoBehaviour
         }
         spawnedObjects.Clear();
         dungeonLevel++;
+
         if(roomCount < 99)
-        {
             roomCount += 2;
-        }
+        
         else
-        {
             roomCount = 99;
-        }
+        
         generationFinished = false;
         IEnumerator coroutine = GenerationLoop();
         StartCoroutine(coroutine);

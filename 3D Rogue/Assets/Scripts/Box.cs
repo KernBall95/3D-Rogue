@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Box : ObjectClass {
 
@@ -11,15 +9,13 @@ public class Box : ObjectClass {
 	
 	void Update () {
         if (this.currentHealth <= 0)
-        {
             DestroyObject(this.gameObject);
-        }
+        
     }
     void OnCollisionEnter(Collision other)
     {
         if (other.collider.tag == "Bullet")
-        {
             TakeDamage(this, weapon.damage);
-        }
+        
     }
 }

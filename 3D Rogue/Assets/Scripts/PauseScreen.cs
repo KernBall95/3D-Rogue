@@ -8,9 +8,7 @@ public class PauseScreen : MonoBehaviour {
 	
 	void Update () {
         if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            ChangePauseState();
-        }
+            ChangePauseState();      
 
         if (isPaused == true)
         {
@@ -27,12 +25,10 @@ public class PauseScreen : MonoBehaviour {
     public void ChangePauseState()
     {
         if(isPaused == true)
-        {
             isPaused = false;
-        }
+        
         else if(isPaused == false)
-        {
             isPaused = true;
-        }
+        
     }
 }

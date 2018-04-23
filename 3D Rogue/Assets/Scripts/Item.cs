@@ -16,15 +16,13 @@ public class Item : MonoBehaviour {
     
     public void AddHealth(Player player, int healthBonus)
     {
-        if(player.currentHealth < player.maxHealth)
+        if (player.currentHealth < player.maxHealth)
         {
             player.currentHealth += healthBonus;
             DestroyItem();
         }
         else
-        {
-            Debug.Log("Already at max health!");
-        }
+            return;
     }
 
     public void AddSpeed(Player player, float speedBonus)
@@ -37,21 +35,17 @@ public class Item : MonoBehaviour {
             DestroyItem();
         }
         else
-        {
-            Debug.Log("Already at max speed!");
-        }
+            return;
     }
     public void IncreaseFireRate(Weapon gun, float fireRateBonus)
     {
-        if(gun.fireRate > 0.1f)
+        if (gun.fireRate > 0.1f)
         {
             gun.fireRate += fireRateBonus;
             DestroyItem();
         }
         else
-        {
-            Debug.Log("Already at fire rate!");
-        }
+            return;
     }
 
     public void IncreaseWeaponDamage(Weapon gun, int damageBonus)
@@ -62,8 +56,6 @@ public class Item : MonoBehaviour {
             DestroyItem();
         }
         else
-        {
-            Debug.Log("Already at weapon damage!");
-        }
+            return;                    
     }
 }

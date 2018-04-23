@@ -16,13 +16,11 @@ public class CorridorChecker : MonoBehaviour {
 	void OnTriggerStay(Collider other)
     {
         if(other.tag == "Corridor")
-        {
             hasCorridor = true;
-        }
+        
         else
-        {
-            hasCorridor = false;
-        }
+        hasCorridor = false;
+        
         corridorChecker = GetComponent<Collider>();
         Destroy(corridorChecker);
     }

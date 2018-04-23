@@ -41,7 +41,7 @@ public class Weapon : MonoBehaviour {
         if (Input.GetButton("Fire1") && allowFire == true)
         {
             coroutine = Shoot();
-            StartCoroutine(coroutine);
+            StartCoroutine(Shoot());
         }
     }
 
