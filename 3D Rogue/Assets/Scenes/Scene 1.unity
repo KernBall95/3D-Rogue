@@ -17,7 +17,7 @@ RenderSettings:
   m_Fog: 1
   m_FogColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
   m_FogMode: 3
-  m_FogDensity: 0.01
+  m_FogDensity: 0.005
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
   m_AmbientSkyColor: {r: 0.20588237, g: 0.20588237, b: 0.20588237, a: 1}
@@ -491,6 +491,7 @@ MonoBehaviour:
   endPortal: {fileID: 1444985389806472, guid: 005ebfeddb11f3d4eaaebb2f509be89c, type: 2}
   player: {fileID: 624414048}
   roomCount: 4
+  currentRoomAmount: 0
   generationFinished: 0
   spawnedObjects: []
   dungeonLevel: 1
@@ -1326,9 +1327,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 5
   currentHealth: 0
-  forwardSpeed: 12
-  backwardSpeed: 6
-  strafeSpeed: 10
+  forwardSpeed: 10
+  backwardSpeed: 5
+  strafeSpeed: 8
   runMulitplier: 1.5
   jumpForce: 1900
   cam: {fileID: 2059045262}

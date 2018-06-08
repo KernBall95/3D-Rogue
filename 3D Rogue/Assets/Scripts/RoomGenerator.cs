@@ -12,8 +12,10 @@ public class RoomGenerator : MonoBehaviour
     public GameObject endPortal;                                                    //Portal which when touched by player will generate next level of dungeon
     public GameObject player;                                                       //The player
 
-    [Range(4, 99)]
+    [Range(4, 75)]
     public int roomCount;                                                           //Amount of attempts to spawn rooms
+
+    public int currentRoomAmount;
    
     [HideInInspector] public bool generationFinished;                               //Is true when the generation of a dungeon level has finished   
     [HideInInspector] public List<GameObject> spawnedObjects;                       //A list of the objects that have been spawned
@@ -24,7 +26,7 @@ public class RoomGenerator : MonoBehaviour
     private GameObject currentRoom;                                                 //The most recent spawned room
     private float genX, genY, genZ;                                                 //Coordinates
     private Vector3 roomSpawnPos;                                                   //Room spawn coordinates
-    private int roomNumber;                                                         //Which room type will be spawned
+    int roomNumber;                                                         //Which room type will be spawned
     private int roomDirNumber;                                                      //Random number to decide which direction to generate
     private string nextSpawnDirection;                                              //Which direction the generator will go
     private bool northRayHit, EastRayHit, southRayHit, westRayHit;                  //Ray hits
@@ -67,7 +69,7 @@ public class RoomGenerator : MonoBehaviour
         {
             yield return new WaitForSeconds(0.000001f);
             GetDirection();
-            roomNumber = Random.Range(0, 4); //Decide which room type will be spawned
+            roomNumber = Random.Range(0, 5); //Decide which room type will be spawned
             
             if (nextSpawnDirection == "North")
             {
@@ -113,7 +115,7 @@ public class RoomGenerator : MonoBehaviour
     //Generates a random number to decide direction and then translates it to a string
     void GetDirection()
     {
-        roomDirNumber = Random.Range(1, 5);
+        roomDirNumber = Random.Range(1, 6);
 
         switch (roomDirNumber)
         {
@@ -128,6 +130,9 @@ public class RoomGenerator : MonoBehaviour
                 break;
             case 4:
                 nextSpawnDirection = "West";
+                break;
+            case 5:
+                nextSpawnDirection = "North";
                 break;
             default:
                 Debug.LogError("roomDirNumber is out of range");
@@ -177,6 +182,7 @@ public class RoomGenerator : MonoBehaviour
             spawnedObjects.Add(currentRoom);
 
             FindRaysAndDoorSpawns();
+            currentRoomAmount++;
         }
     }
 
@@ -196,7 +202,8 @@ public class RoomGenerator : MonoBehaviour
 
     //Destroys current dungeon and starts the generation of the next level
     public void DestroyAndRegen()
-    {        
+    {
+        currentRoomAmount = 0;
         for (int i = 0; i < spawnedObjects.Count; i++)
         {
             Destroy(spawnedObjects[i]);          
@@ -214,5 +221,6 @@ public class RoomGenerator : MonoBehaviour
         IEnumerator coroutine = GenerationLoop();
         StartCoroutine(coroutine);
         player.transform.position = new Vector3(0f, 1.8f, 0f);
+        
     }
 }

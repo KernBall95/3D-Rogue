@@ -30,9 +30,6 @@ public class Room : MonoBehaviour
 
         IEnumerator genCoroutine = WaitForGen();
         StartCoroutine(genCoroutine);
-
-        SpawnObjects();
-        SpawnEnemies();
     }
 
     void Update()
@@ -104,7 +101,7 @@ public class Room : MonoBehaviour
                     Instantiate(enemyPrefabs[enemyType], enemySpawns[i].position, Quaternion.identity, transform);
                     enemyCount++;
                 }
-                else if(enemyType == 2 && roomGenerator.dungeonLevel > 0)
+                else if(enemyType == 2 && roomGenerator.dungeonLevel > 3)
                 {
                     for(int j = 0; j < 4; j++)
                     {
@@ -145,6 +142,8 @@ public class Room : MonoBehaviour
         }
         yield return new WaitForSeconds(0.5f);
         SpawnDoors();
+        SpawnObjects();
+        SpawnEnemies();
     }
 
     private IEnumerator WaitForEnemySpawnCondition()

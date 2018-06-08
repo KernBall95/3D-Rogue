@@ -73,6 +73,7 @@ public class Player : Character {
         if(this.currentHealth <= 0)
         {
             Die(this.gameObject);
+            Cursor.visible = true;
             sceneSwitcher.SwitchToMenu();
         }
     }
